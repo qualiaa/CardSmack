@@ -1,0 +1,27 @@
+# Compiled Object files
+*.slo
+*.lo
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+
+# Precompiled headers
+*.gch
+*.pch
+
+build*/
+# Vim temporary files
+*.swp
+*~
+
+#Qt Creator temporary files
+*.user
+
+*.orig

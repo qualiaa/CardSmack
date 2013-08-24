@@ -1,0 +1,3 @@
+[submodule "Tank"]
+	path = Tank
+	url = git@github.com:Gazok/Tank.git
