@@ -6,7 +6,7 @@ int main()
     if(tank::Game::initialize({800,600}))
     {
         tank::Game::makeState<MainState>();
-        tank::Game::window()->setCaption("Day of the Pixel Cards");
+        tank::Game::window()->setCaption("Card Smack");
         tank::Game::run();
     }
 }
