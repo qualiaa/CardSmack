@@ -22,6 +22,6 @@ private:
     tank::Image image_;
     std::string name_;
     Ability ability_;
-}
+};
 
 #endif /* CARD_HPP */

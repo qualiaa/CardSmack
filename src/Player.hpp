@@ -1,9 +1,9 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-#include <Tank/System/Entity.hpp>
+#include "Summoner.hpp"
 
-class Player : public tank::Entity
+class Player : public Summoner
 {
 public:
     Player();
