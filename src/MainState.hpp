@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <Tank/System/State.hpp>
+#include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
 #include "Summoner.hpp"
 
@@ -16,7 +17,8 @@ public:
     virtual void update() override;
 private:
     std::unique_ptr<Summoner> summoners_[2];
-    bool currentPlayer_;
+    bool currentPlayer_; 
+    tank::Timer turnTimer_;
 
     std::vector<Deck> decks_;
 };

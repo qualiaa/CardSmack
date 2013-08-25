@@ -13,10 +13,12 @@ class Summoner
 public:
     Summoner(Deck const& deck, MainState& game);
 
-    virtual void update(bool myTurn) = 0;
+    void update(bool myTurn);
+
     void beginTurn();
     void endTurn();
 protected:
+    virtual void gameLogic(bool myTurn) = 0;
     Hand hand_;
     Field field_;
     tank::Timer turnTimer_;
@@ -27,7 +29,8 @@ class AI : public Summoner
 {
 public:
     AI(Deck const& deck, MainState& game): Summoner(deck,game) {}
-    virtual void update(bool myTurn) override {}
+private:
+    virtual void gameLogic(bool myTurn) override {}
 };
 
 #endif /* SUMMONER_HPP */

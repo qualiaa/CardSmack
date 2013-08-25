@@ -19,18 +19,19 @@ Player::Player(Deck const& deck, MainState& game)
     game_.eventHandler.define("endTurn", { tank::Key::Space });
 }
 
-void Player::update(bool myTurn)
+void Player::gameLogic(bool myTurn)
 {
+    if (game_.eventHandler.check("shiftLeft"))
+    {
+        hand_.shiftLeft();
+    }
+    else if (game_.eventHandler.check("shiftRight"))
+    {
+        hand_.shiftRight();
+    }
+
     if (myTurn)
     {
-        if (game_.eventHandler.check("shiftLeft"))
-        {
-            hand_.shiftLeft();
-        }
-        else if (game_.eventHandler.check("shiftRight"))
-        {
-            hand_.shiftRight();
-        }
         if (game_.eventHandler.check("playSlot0"))
         {
             makeAction(0);

@@ -1,47 +1,82 @@
 #include "Field.hpp"
 
-Field::Field()
-{
-    //std::fill(cards_.begin(), cards_.end(), nullptr);
-    cards_ = {};
-    attacking_ = {};
-}
+#include <iostream>
+#include "Settings.hpp"
 
-bool Field::isTaken(unsigned int slot) const
-{
-    return cards_[slot];
-}
+Field::Field() { }
 
-void Field::toggleAttack(unsigned int slot)
+void Field::update()
 {
-    if (cards_[slot])
+    for (unsigned int i = 0; i < slots_.size(); ++i)
     {
-        attacking_[slot] = not attacking_[slot];
+        if (slots_[i].card)
+        {
+            if (slots_[i].timer.getTicks() > 1000 * settings::turnTime)
+            {
+                removeCard(i);
+            }
+        }
     }
-}
-
-bool Field::isAttacking(unsigned int slot) const
-{
-    if (cards_[slot])
-    {
-        return attacking_[slot];
-    }
-
-    return false;
-}
-
-Card* Field::getCard(unsigned int slot) const
-{
-    return cards_[slot];
 }
 
 void Field::removeCard(unsigned int slot)
 {
-    cards_[slot] = nullptr;
-    attacking_[slot] = false;
+    std::cout << "[Slot " << slot << "] "
+              << slots_[slot].card->getName() << " dies" << std::endl;
+
+    slots_[slot].card = nullptr;
+    slots_[slot].timer.stop();
 }
 
-void Field::setCard(Card* card, unsigned int slot)
+void Field::setCard(Card const* card, unsigned int slot)
 {
-    cards_[slot] = card;
+    slots_[slot].card = card;
+    slots_[slot].timer.start();
+    slots_[slot].attacking = false;
+
+    std::cout << "[Slot " << slot << "] "
+              << "Played " << card->getName() << std::endl;
+}
+
+Card const* Field::getCard(unsigned int slot) const
+{
+    return slots_[slot].card;
+}
+
+bool Field::isTaken(unsigned int slot) const
+{
+    return slots_[slot].card;
+}
+
+void Field::toggleAttack(unsigned int slotIndex)
+{
+    Slot& slot = slots_[slotIndex];
+
+    slot.attacking = not slot.attacking;
+
+    std::cout << "[Slot " << slotIndex << "] "
+              << "Set to ";
+    if(slot.attacking)
+    {
+        std::cout << "attack" << std::endl;
+    }
+    else
+    {
+        std::cout << "defend" << std::endl;
+    }
+}
+
+bool Field::isAttacking(unsigned int slotIndex) const
+{
+    /*Slot const& slot = slots_[slotIndex];
+
+    if (slot.card)
+    {
+    */
+        return slots_[slotIndex].attacking;
+    /*
+    }
+
+    return false;
+    */
 }
