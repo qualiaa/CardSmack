@@ -19,9 +19,12 @@ public:
     void endTurn();
 protected:
     virtual void gameLogic(bool myTurn) = 0;
-    Hand hand_;
+
+    unsigned int life_;
+    unsigned int mana_;
     Field field_;
-    tank::Timer turnTimer_;
+    Hand hand_;
+    tank::Timer manaTimer_;
     MainState& game_;
 };
 
