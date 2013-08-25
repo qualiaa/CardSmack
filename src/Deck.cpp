@@ -48,5 +48,12 @@ Card::Card(std::string xmlPath, std::string imagePath)
     rarity_ = cardTree.get<unsigned int>("rarity");
     ability_ = static_cast<Ability>(cardTree.get("ability",0));
 
-    image_.load(cardTree.get("image",imagePath));
+    imagePath = cardTree.get("image",imagePath);
+    image_.load(imagePath);
+
+    std::cout << "Name: " << name_ << std::endl;
+    std::cout << "Strength: " << strength_ << std::endl;
+    std::cout << "Cost: " << cost_ << std::endl;
+    std::cout << "Rarity: " << rarity_ << std::endl;
+    std::cout << "Image: " << imagePath << std::endl;
 }
