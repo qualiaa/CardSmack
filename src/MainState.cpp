@@ -1,12 +1,19 @@
 #include "MainState.hpp"
 
+#include <boost/filesystem.hpp>
 #include "Player.hpp"
 
 MainState::MainState()
-    : testDeck("res/decks/testdeck")
 {
-    summoners_[0].reset(new Player(testDeck, *this));
-    summoners_[1].reset(new AI(testDeck, *this));
+    for (boost::filesystem::directory_iterator deckIter("res/decks");
+         deckIter != boost::filesystem::directory_iterator();
+         ++deckIter)
+    {
+        decks_.push_back(deckIter->path().string());
+    }
+
+    summoners_[0].reset(new Player(decks_.back(), *this));
+    summoners_[1].reset(new AI(decks_.back(), *this));
 }
 
 void MainState::endTurn()

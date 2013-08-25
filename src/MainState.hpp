@@ -1,8 +1,10 @@
 #ifndef MAINSTATE_HPP
 #define MAINSTATE_HPP
 
+#include <vector>
 #include <memory>
 #include <Tank/System/State.hpp>
+#include "Deck.hpp"
 #include "Summoner.hpp"
 
 class MainState : public tank::State
@@ -16,7 +18,7 @@ private:
     std::unique_ptr<Summoner> summoners_[2];
     bool currentPlayer_;
 
-    Deck testDeck;
+    std::vector<Deck> decks_;
 };
 
 #endif /* MAINSTATE_HPP */
