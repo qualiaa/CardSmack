@@ -7,7 +7,7 @@ find_package(SFML 2.0 REQUIRED system window audio graphics)
 find_package(OpenGL REQUIRED)
 find_package(GLEW REQUIRED)
 find_package(Threads REQUIRED)
-find_package(Boost 1.53.0 REQUIRED)
+find_package(Boost 1.53.0 COMPONENTS system filesystem REQUIRED)
 add_subdirectory(Tank)
 
 include_directories(${Boost_INCLUDE_DIR})
