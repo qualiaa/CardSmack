@@ -10,8 +10,10 @@ class Hand
 public:
     Hand(Deck const& deck_, Field& field);
 
-    Card* getCard(unsigned int slot);
-    Card* releaseCard(unsigned int slot);
+    Card const* getCard(unsigned int slot);
+    Card const* releaseCard(unsigned int slot);
+
+    inline void drawCard(unsigned int slot);
 
     void shiftRight();
     void shiftLeft();
@@ -19,7 +21,7 @@ public:
 private:
     Deck const& deck_;
     Field& field_;
-    std::array<Card*, 6> cards_;
+    std::array<Card const*, 6> cards_;
 };
 
 #endif

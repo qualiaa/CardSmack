@@ -30,7 +30,7 @@ bool Field::isAttacking(unsigned int slot) const
     return false;
 }
 
-Card* Field::getCard(unsigned int slot) const
+Card const* Field::getCard(unsigned int slot) const
 {
     return cards_[slot];
 }
@@ -41,7 +41,7 @@ void Field::removeCard(unsigned int slot)
     attacking_[slot] = false;
 }
 
-void Field::setCard(Card* card, unsigned int slot)
+void Field::setCard(Card const* card, unsigned int slot)
 {
     cards_[slot] = card;
 }

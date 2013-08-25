@@ -2,6 +2,7 @@
 #define DECK_HPP
 
 #include <string>
+#include <cmath>
 #include <Tank/Graphics/Image.hpp>
 
 enum Ability
@@ -25,17 +26,19 @@ class Card
 public:
     Card(std::string xmlPath, std::string imagePath);
 
-    unsigned int getRarity() { return rarity_; }
-    unsigned int getStrength() { return strength_; }
-    tank::Image& getImage() { return image_; }
-    std::string getName() { return name_; }
-    Ability getAbility() { return ability_; }
+    unsigned int getRelativeChance() const { return relativeChance_; }
+    unsigned int getStrength() const { return strength_; }
+    tank::Image const& getImage() const { return image_; }
+    std::string getName() const { return name_; }
+    Ability getAbility() const { return ability_; }
+
+    static const double rarityToChance[4];
 private:
     std::string name_;
     tank::Image image_;
     unsigned int strength_;
     unsigned int cost_;
-    unsigned int rarity_;
+    unsigned int relativeChance_;
     Ability ability_;
 };
 
@@ -43,8 +46,9 @@ class Deck
 {
 public:
     Deck(std::string filepath);
-    Card* drawCard() const;
+    Card const* drawCard() const;
 private:
+    unsigned int relChanceTotal_;
     std::vector<Card> cards_;
 };
 
