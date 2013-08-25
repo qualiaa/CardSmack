@@ -8,8 +8,8 @@ class Player : public Summoner
 public:
     Player(Deck const& deck, MainState& game);
 
-    virtual void update(bool myTurn) override;
 private:
+    virtual void gameLogic(bool myTurn) override;
     inline void makeAction(unsigned int slot);
 };
 

@@ -18,3 +18,10 @@ void Summoner::beginTurn()
 void Summoner::endTurn()
 {
 }
+
+void Summoner::update(bool myTurn)
+{
+    field_.update();
+
+    gameLogic(myTurn);
+}

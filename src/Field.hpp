@@ -2,12 +2,15 @@
 #define FIELD_HPP
 
 #include <array>
+#include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
 
 class Field
 {
 public:
     Field();
+
+    void update();
 
     void removeCard(unsigned int slot);
     void setCard(Card const*, unsigned int slot);
@@ -17,8 +20,14 @@ public:
     void toggleAttack(unsigned int slot);
     bool isAttacking(unsigned int slot) const;
 private:
-    std::array<Card const*, 6> cards_;
-    std::array<bool, 6> attacking_;
+    struct Slot
+    {
+        Card const* card {nullptr};
+        bool attacking {false};
+        tank::Timer timer{};
+    };
+
+    std::array<Slot, 6> slots_;
 };
 
 #endif /* FIELD_HPP */
