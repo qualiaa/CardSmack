@@ -4,16 +4,26 @@
 #include <string>
 #include <Tank/Graphics/Image.hpp>
 
-enum class Ability
+enum Ability
 {
     None,
+    Placeholder1,
+    Placeholder2,
+    Placeholder3,
+    Placeholder4,
+    Placeholder5,
+    Placeholder6,
+    Placeholder7,
+    Placeholder8,
+    Placeholder9,
+    Placeholder10,
     AbilityCount
 };
 
 class Card
 {
 public:
-    Card(std::string file);
+    Card(std::string xmlPath, std::string imagePath);
 
     unsigned int getRarity() { return rarity_; }
     unsigned int getStrength() { return strength_; }
@@ -21,10 +31,11 @@ public:
     std::string getName() { return name_; }
     Ability getAbility() { return ability_; }
 private:
-    unsigned int rarity_;
-    unsigned int strength_;
-    tank::Image image_;
     std::string name_;
+    tank::Image image_;
+    unsigned int strength_;
+    unsigned int cost_;
+    unsigned int rarity_;
     Ability ability_;
 };
 
