@@ -1,6 +1,7 @@
 #ifndef DECK_HPP
 #define DECK_HPP
 
+#include <string>
 #include <Tank/Graphics/Image.hpp>
 
 enum class Ability
