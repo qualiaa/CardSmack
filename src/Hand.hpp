@@ -1,6 +1,7 @@
 #ifndef HAND_HPP
 #define HAND_HPP
 
+#include <array>
 #include "Deck.hpp"
 #include "Field.hpp"
 

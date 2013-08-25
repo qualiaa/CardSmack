@@ -1,7 +1,6 @@
 #ifndef SUMMONER_HPP
 #define SUMMONER_HPP
 
-#include <array>
 #include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
 #include "Field.hpp"
