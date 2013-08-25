@@ -4,7 +4,7 @@ Hand::Hand(Deck const& deck, Field& field)
     : deck_(deck)
     , field_(field)
 {
-    for (auto card : cards_)
+    for (auto& card : cards_)
     {
         card = deck_.drawCard();
     }
