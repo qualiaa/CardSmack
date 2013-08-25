@@ -6,7 +6,7 @@ Hand::Hand(Deck const& deck, Field& field)
     : deck_(deck)
     , field_(field)
 {
-    for (int i = 0; i < cards_.size(); ++i)
+    for (unsigned int i = 0; i < cards_.size(); ++i)
     {
         drawCard(i);
     }
