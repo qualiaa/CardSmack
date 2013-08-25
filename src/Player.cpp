@@ -21,10 +21,8 @@ Player::Player(Deck const& deck, MainState& game)
 
 void Player::update(bool myTurn)
 {
-    std::cout << "Updating player" << std::endl;
     if (myTurn)
     {
-        std::cout << "Doing stuff as player" << std::endl;
         if (game_.eventHandler.check("shiftLeft"))
         {
             hand_.shiftLeft();

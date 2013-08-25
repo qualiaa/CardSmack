@@ -27,7 +27,7 @@ class AI : public Summoner
 {
 public:
     AI(Deck const& deck, MainState& game): Summoner(deck,game) {}
-    virtual void update(bool myTurn) override;
+    virtual void update(bool myTurn) override {}
 };
 
 #endif /* SUMMONER_HPP */

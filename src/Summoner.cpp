@@ -18,8 +18,3 @@ void Summoner::beginTurn()
 void Summoner::endTurn()
 {
 }
-
-void AI::update(bool myTurn)
-{
-    std::cout << "Updating AI" << std::endl;
-}
