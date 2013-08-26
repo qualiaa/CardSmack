@@ -27,16 +27,21 @@ private:
 class HandGUI : public tank::Entity
 {
 public:
-    HandGUI(Summoner*);
+    HandGUI(tank::Vectorf pos, Summoner*);
 
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
 private:
     Summoner* summoner_;
 
-    static tank::Image cardInactive;
-
     std::array<CardSlot, 6> cardSlots_;
+
+};
+
+class InvalidSlot : public ZoomHack
+{
+public:
+    InvalidSlot(tank::Vectorf pos);
 };
 
 #endif

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <boost/filesystem.hpp>
+#include "Resources.hpp"
 #include "Settings.hpp"
 #include "Player.hpp"
 
@@ -20,8 +21,11 @@ MainState::MainState()
     summoners_[0]->name = "Player";
     summoners_[1]->name = "AI";
 
-    makeEntity<CardSlot>(tank::Vectorf{100.f,100.f}, decks_.back()->drawCard());
-    makeEntity<HandGUI>(summoners_[0].get());
+    makeEntity<tank::Entity>(tank::Vectorf{})->
+        makeGraphic<tank::Image>(res::playingField);
+    makeEntity<HandGUI>(tank::Vectorf {56.f, 216.f }, summoners_[0].get());
+    makeEntity<FieldGUI>(tank::Vectorf {56.f, 128.f}, summoners_[0]->getField());
+    makeEntity<FieldGUI>(tank::Vectorf {56.f, 40.f}, summoners_[1]->getField());
 
     turnTimer_.start();
 }
