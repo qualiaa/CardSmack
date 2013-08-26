@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include <cmath>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -99,7 +100,7 @@ void CardSlot::draw(tank::Vectorf cam)
         tank::Vectorf pos = (getPos() + tank::Vectorf{dimensions.x / 2, 5}) * ZoomHack::getScale();
 
         sf::FloatRect textRect = text_.getLocalBounds();
-        text_.setOrigin(textRect.left + textRect.width / 2.f, 0.f);
+        text_.setOrigin(std::floor(textRect.left + textRect.width / 2.f), 0.f);
 
         float angle = getRotation();
 
