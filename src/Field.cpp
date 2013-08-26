@@ -77,3 +77,33 @@ bool Field::isAttacking(unsigned int slotIndex) const
     return false;
     */
 }
+
+FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field)
+    : Entity(pos)
+    , field_(field)
+{
+    for (unsigned int i = 0; i < 6; ++i)
+    {
+        cardSlots_[i].setPos({getPos().x + settings::cardSpace * i,
+                              getPos().y});
+    }
+}
+
+void FieldGUI::update()
+{
+    for (unsigned int i = 0; i < 6; ++i)
+    {
+        if (cardSlots_[i].getCard() != field_.getCard(i))
+        {
+            cardSlots_[i].setCard(field_.getCard(i));
+        }
+    }
+}
+
+void FieldGUI::draw(tank::Vectorf cam)
+{
+    for (unsigned int i = 0; i < 6; ++i)
+    {
+        cardSlots_[i].draw(cam);
+    }
+}
