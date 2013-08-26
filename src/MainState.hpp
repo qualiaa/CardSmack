@@ -12,6 +12,8 @@ class MainState : public tank::State
 {
 public:
     MainState();
+    virtual ~MainState();
+
     void endTurn();
 
     virtual void update() override;
@@ -22,7 +24,7 @@ private:
     bool currentPlayer_;
     tank::Timer turnTimer_;
 
-    std::vector<Deck> decks_;
+    std::vector<Deck*> decks_;
 };
 
 #endif /* MAINSTATE_HPP */

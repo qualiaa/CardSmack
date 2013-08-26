@@ -46,10 +46,6 @@ CardSlot::CardSlot(tank::Vectorf pos, Card const* card)
         fontLoaded = true;
     }
 
-    if (card == nullptr)
-    {
-        std::cout << "Created empty CardSlot" << std::endl;
-    }
     setCard(card);
 }
 
@@ -68,12 +64,8 @@ void CardSlot::setCard(Card const* card)
         return;
     }
 
-    std::cout << "Adding " << card->getName() << " to cardslot" << std::endl;
-
     makeGraphic<tank::Image>(card->deck->backing);
     makeGraphic<tank::Image>(card->deck->rarity[card->getRarity()]);
-
-    std::cout << "Added card base to cardslot" << std::endl;
 
     for (unsigned int i = 0; i < card->getStrength(); ++i)
     {
@@ -85,8 +77,6 @@ void CardSlot::setCard(Card const* card)
         makeGraphic<tank::Image>(res::costIcon)->setOrigin({- 3.f, - 16.f - i * 9.f});
     }
 
-    std::cout << "Added stats to cardslot" << std::endl;
-
 
 
     if (card->getAbility())
@@ -94,14 +84,10 @@ void CardSlot::setCard(Card const* card)
         makeGraphic<tank::Image>(res::abilities[card->getAbility()]);
     }
 
-    std::cout << "Added ability to cardslot" << std::endl;
-
     text_.setString(card->getName());
     text_.setFont(cardFont);
     text_.setCharacterSize(16);
     makeGraphic<tank::Image>(card->getImage());
-
-    std::cout << "Card added" << std::endl;
 }
 
 void CardSlot::draw(tank::Vectorf cam)

@@ -11,7 +11,7 @@ MainState::MainState()
          deckIter != boost::filesystem::directory_iterator();
          ++deckIter)
     {
-        decks_.push_back(deckIter->path().string());
+        decks_.push_back(new Deck(deckIter->path().string()));
     }
 
     summoners_[0].reset(new Player(decks_.back(), *this));
@@ -20,10 +20,19 @@ MainState::MainState()
     summoners_[0]->name = "Player";
     summoners_[1]->name = "AI";
 
-    makeEntity<CardSlot>(tank::Vectorf{100.f,100.f}, decks_.back().drawCard());
+    makeEntity<CardSlot>(tank::Vectorf{100.f,100.f}, decks_.back()->drawCard());
     makeEntity<HandGUI>(summoners_[0].get());
 
     turnTimer_.start();
+}
+
+MainState::~MainState()
+{
+    while (not decks_.empty())
+    {
+        delete decks_.back();
+        decks_.pop_back();
+    }
 }
 
 void MainState::endTurn()

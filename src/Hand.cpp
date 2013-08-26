@@ -8,7 +8,7 @@
 
 tank::Image HandGUI::cardInactive(res::cardInactive);
 
-Hand::Hand(Deck const& deck, Field& field)
+Hand::Hand(Deck const* deck, Field& field)
     : deck_(deck)
 {
     for (unsigned int i = 0; i < cards_.size(); ++i)
@@ -32,7 +32,7 @@ Card const* Hand::releaseCard(unsigned int slot)
 
 void Hand::drawCard(unsigned int slot)
 {
-    cards_[slot] = deck_.drawCard();
+    cards_[slot] = deck_->drawCard();
 }
 
 void Hand::shiftLeft()

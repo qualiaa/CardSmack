@@ -4,7 +4,7 @@
 #include <Tank/System/EventHandler.hpp>
 #include "MainState.hpp"
 
-Player::Player(Deck const& deck, MainState& game)
+Player::Player(Deck const* deck, MainState& game)
     : Summoner(deck, game)
 {
     // TODO: Support Dvorak

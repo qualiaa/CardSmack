@@ -10,7 +10,7 @@ class Summoner;
 class Hand
 {
 public:
-    Hand(Deck const& deck_, Field& field);
+    Hand(Deck const* deck_, Field& field);
 
     Card const* getCard(unsigned int slot) const;
     Card const* releaseCard(unsigned int slot);
@@ -20,7 +20,7 @@ public:
     void shiftRight();
     void shiftLeft();
 private:
-    Deck const& deck_;
+    Deck const* deck_;
     std::array<Card const*, 6> cards_;
 };
 

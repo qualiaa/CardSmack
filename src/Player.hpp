@@ -6,7 +6,7 @@
 class Player : public Summoner
 {
 public:
-    Player(Deck const& deck, MainState& game);
+    Player(Deck const* deck, MainState& game);
 
 private:
     virtual void gameLogic(bool myTurn) override;

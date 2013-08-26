@@ -7,7 +7,7 @@
 #include "Deck.hpp"
 #include "Card.hpp"
 
-Summoner::Summoner(Deck const& deck, MainState& game)
+Summoner::Summoner(Deck const* deck, MainState& game)
     : life_(settings::maxLife)
     , mana_(settings::maxMana)
     , hand_(deck, field_)

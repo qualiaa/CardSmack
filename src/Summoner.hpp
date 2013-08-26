@@ -11,7 +11,7 @@ class Deck;
 class Summoner
 {
 public:
-    Summoner(Deck const& deck, MainState& game);
+    Summoner(Deck const* deck, MainState& game);
 
     void update(bool myTurn);
 
@@ -37,8 +37,10 @@ protected:
 
     unsigned int life_;
     unsigned int mana_;
+
     Field field_;
     Hand hand_;
+
     tank::Timer manaTimer_;
     MainState& game_;
 };
@@ -46,7 +48,7 @@ protected:
 class AI : public Summoner
 {
 public:
-    AI(Deck const& deck, MainState& game): Summoner(deck,game) {}
+    AI(Deck const* deck, MainState& game): Summoner(deck,game) {}
 private:
     virtual void gameLogic(bool myTurn) override;
 
