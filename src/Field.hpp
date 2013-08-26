@@ -8,6 +8,13 @@
 class Field
 {
 public:
+    struct Slot
+    {
+        Card const* card {nullptr};
+        bool attacking {false};
+        tank::Timer timer{};
+    };
+
     Field();
 
     void update();
@@ -16,17 +23,10 @@ public:
     void setCard(Card const*, unsigned int slot);
     Card const* getCard(unsigned int slot) const;
 
-    bool isTaken(unsigned int slot) const;
+    bool isActive(unsigned int slot) const;
     void toggleAttack(unsigned int slot);
     bool isAttacking(unsigned int slot) const;
 private:
-    struct Slot
-    {
-        Card const* card {nullptr};
-        bool attacking {false};
-        tank::Timer timer{};
-    };
-
     std::array<Slot, 6> slots_;
 };
 

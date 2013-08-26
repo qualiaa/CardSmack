@@ -33,9 +33,6 @@ void Field::setCard(Card const* card, unsigned int slot)
     slots_[slot].card = card;
     slots_[slot].timer.start();
     slots_[slot].attacking = false;
-
-    std::cout << "[Slot " << slot << "] "
-              << "Played " << card->getName() << std::endl;
 }
 
 Card const* Field::getCard(unsigned int slot) const
@@ -43,7 +40,7 @@ Card const* Field::getCard(unsigned int slot) const
     return slots_[slot].card;
 }
 
-bool Field::isTaken(unsigned int slot) const
+bool Field::isActive(unsigned int slot) const
 {
     return slots_[slot].card;
 }

@@ -65,12 +65,12 @@ void Player::gameLogic(bool myTurn)
 
 void Player::makeAction(unsigned int slot)
 {
-    if (field_.isTaken(slot))
+    if (field_.isActive(slot))
     {
         field_.toggleAttack(slot);
     }
     else
     {
-        field_.setCard(hand_.releaseCard(slot), slot);
+        play(slot);
     }
 }

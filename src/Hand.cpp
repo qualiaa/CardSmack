@@ -28,16 +28,14 @@ Card const* Hand::releaseCard(unsigned int slot)
 void Hand::drawCard(unsigned int slot)
 {
     cards_[slot] = deck_.drawCard();
-    std::cout << "Drew card: " << cards_[slot]->getName() << std::endl;
-}
-
-void Hand::shiftRight()
-{
-    // TODO: Test
-    std::rotate(cards_.begin(), cards_.end() - 2, cards_.end());
 }
 
 void Hand::shiftLeft()
 {
     std::rotate(cards_.begin(), cards_.begin() + 1, cards_.end());
+}
+
+void Hand::shiftRight()
+{
+    std::rotate(cards_.begin(), cards_.end() - 2, cards_.end());
 }

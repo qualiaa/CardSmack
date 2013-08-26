@@ -16,8 +16,10 @@ public:
 
     virtual void update() override;
 private:
+    void resolveAttacks();
+
     std::unique_ptr<Summoner> summoners_[2];
-    bool currentPlayer_; 
+    bool currentPlayer_;
     tank::Timer turnTimer_;
 
     std::vector<Deck> decks_;
