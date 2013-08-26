@@ -77,13 +77,7 @@ void HandGUI::draw(tank::Vectorf cam)
             tank::Vectorf pos = getPos() + tank::Vectorf{
                         static_cast<float>(settings::cardSpace * i), 0.f};
 
-            InvalidSlot(pos).draw(cam);
+            InvalidSlot(pos, true).draw(cam);
         }
     }
-}
-
-InvalidSlot::InvalidSlot(tank::Vectorf pos)
-    : ZoomHack(pos)
-{
-    makeGraphic<tank::Image>(res::cardInactive);
 }

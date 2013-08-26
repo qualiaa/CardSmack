@@ -5,6 +5,7 @@
 #include <Tank/System/Entity.hpp>
 #include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
+#include "InactiveSlot.hpp"
 
 class Field
 {
@@ -19,6 +20,7 @@ public:
     Field();
 
     void update();
+    unsigned int getTimeRemaining(unsigned int slot) const;
 
     void removeCard(unsigned int slot);
     void setCard(Card const*, unsigned int slot);

@@ -19,6 +19,16 @@ void Field::update()
     }
 }
 
+unsigned int Field::getTimeRemaining(unsigned int slot) const
+{
+    if(slots_[slot].card)
+    {
+        return slots_[slot].timer.getTicks();
+    }
+
+    return 0;
+}
+
 void Field::removeCard(unsigned int slot)
 {
     std::cout << "[Slot " << slot << "] "
@@ -65,17 +75,7 @@ void Field::toggleAttack(unsigned int slotIndex)
 
 bool Field::isAttacking(unsigned int slotIndex) const
 {
-    /*Slot const& slot = slots_[slotIndex];
-
-    if (slot.card)
-    {
-    */
-        return slots_[slotIndex].attacking;
-    /*
-    }
-
-    return false;
-    */
+    return slots_[slotIndex].attacking;
 }
 
 FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field)

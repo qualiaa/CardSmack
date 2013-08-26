@@ -4,6 +4,7 @@
 #include <array>
 #include "Deck.hpp"
 #include "Field.hpp"
+#include "InactiveSlot.hpp"
 
 class Summoner;
 
@@ -36,12 +37,6 @@ private:
 
     std::array<CardSlot, 6> cardSlots_;
 
-};
-
-class InvalidSlot : public ZoomHack
-{
-public:
-    InvalidSlot(tank::Vectorf pos);
 };
 
 #endif
