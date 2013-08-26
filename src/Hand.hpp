@@ -34,9 +34,14 @@ public:
 private:
     Summoner* summoner_;
 
-    static tank::Image cardInactive;
-
     std::array<CardSlot, 6> cardSlots_;
+
+};
+
+class InvalidSlot : public ZoomHack
+{
+public:
+    InvalidSlot(tank::Vectorf pos);
 };
 
 #endif

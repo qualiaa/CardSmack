@@ -6,8 +6,6 @@
 #include "Settings.hpp"
 #include "Summoner.hpp"
 
-tank::Image HandGUI::cardInactive(res::cardInactive);
-
 Hand::Hand(Deck const* deck, Field& field)
     : deck_(deck)
 {
@@ -42,7 +40,7 @@ void Hand::shiftLeft()
 
 void Hand::shiftRight()
 {
-    std::rotate(cards_.begin(), cards_.end() - 2, cards_.end());
+    std::rotate(cards_.begin(), cards_.end() - 1, cards_.end());
 }
 
 HandGUI::HandGUI(Summoner* summoner)
@@ -58,7 +56,6 @@ HandGUI::HandGUI(Summoner* summoner)
 
 void HandGUI::update()
 {
-    std::cout << "Updating HandGUI" << std::endl;
 
     for (unsigned int i = 0; i < 6; ++i)
     {
@@ -67,20 +64,26 @@ void HandGUI::update()
             cardSlots_[i].setCard(summoner_->getHand().getCard(i));
         }
     }
-    std::cout << "Done updating" << std::endl;
 }
 
 void HandGUI::draw(tank::Vectorf cam)
 {
-    std::cout << "Drawing HandGUI" << std::endl;
     for (unsigned int i = 0; i < 6; ++i)
     {
-        std::cout << "Drawing slot " << i << std::endl;
         cardSlots_[i].draw(cam);
+
         if (summoner_->getField().isActive(i))
         {
-            cardInactive.draw({0.f, 0.f});
+            tank::Vectorf pos = getPos() + tank::Vectorf{
+                        static_cast<float>(settings::cardSpace * i), 0.f};
+
+            InvalidSlot(pos).draw(cam);
         }
     }
-    std::cout << "Done drawing" << std::endl;
+}
+
+InvalidSlot::InvalidSlot(tank::Vectorf pos)
+    : ZoomHack(pos)
+{
+    makeGraphic<tank::Image>(res::cardInactive);
 }
