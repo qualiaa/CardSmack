@@ -27,7 +27,7 @@ private:
 class HandGUI : public tank::Entity
 {
 public:
-    HandGUI(Summoner*);
+    HandGUI(tank::Vectorf pos, Summoner*);
 
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
