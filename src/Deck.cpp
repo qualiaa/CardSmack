@@ -11,8 +11,8 @@
 Deck::Deck(std::string filePath)
     : relChanceTotal_(0)
 {
-    std::string xmlFolder = filePath + "/xml";
-    std::string imageFolder = filePath + "/gfx";
+    std::string xmlFolder = filePath + "/xml/";
+    std::string imageFolder = filePath + "/gfx/";
 
     tank::Game::log << "Loading deck " << filePath << std::endl;
 
@@ -25,9 +25,16 @@ Deck::Deck(std::string filePath)
             auto path = fileIter->path();
             cards_.push_back(
                 Card(path.string(),
-                     imageFolder + "/" + path.stem().string() + ".png"));
+                     imageFolder + path.stem().string() + ".png",
+                     *this));
         }
     }
+
+    rarity[0].load(imageFolder + "Common.png");
+    rarity[1].load(imageFolder + "Uncommon.png");
+    rarity[2].load(imageFolder + "Rare.png");
+    rarity[3].load(imageFolder + "Mythic.png");
+    backing.load(imageFolder + "Backing.png");
 
     for (auto card : cards_)
     {
