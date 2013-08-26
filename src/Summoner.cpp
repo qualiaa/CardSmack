@@ -113,6 +113,10 @@ void Summoner::shiftHandRight()
     hand_.shiftRight();
 }
 
+void Summoner::toggleAttack(unsigned int slot)
+{
+}
+
 void AI::gameLogic(bool myTurn)
 {
     if (myTurn)
