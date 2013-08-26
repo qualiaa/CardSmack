@@ -20,8 +20,10 @@ MainState::MainState()
     summoners_[0]->name = "Player";
     summoners_[1]->name = "AI";
 
-    makeEntity<CardSlot>(tank::Vectorf{100.f,100.f}, decks_.back()->drawCard());
+    //makeEntity<Entity>(tank::Vectorf{})->makeGraphic<tank::Image>(
     makeEntity<HandGUI>(summoners_[0].get());
+    makeEntity<FieldGUI>(tank::Vectorf {0.f, 100.f}, summoners_[0]->getField());
+    makeEntity<FieldGUI>(tank::Vectorf {0.f, 200.f}, summoners_[1]->getField());
 
     turnTimer_.start();
 }
