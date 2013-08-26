@@ -13,3 +13,4 @@ const tank::Image res::abilities[Ability::AbilityCount] = {
 
 const tank::Image res::powerIcon{"res/gfx/CardPower.png"};
 const tank::Image res::costIcon{"res/gfx/CardCost.png"};
+const tank::Image res::cardInactive{"res/gfx/CardInactive.png"};
