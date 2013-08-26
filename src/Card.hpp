@@ -1,6 +1,7 @@
 #ifndef CARD_HPP
 #define CARD_HPP
 
+#include <SFML/Graphics/Text.hpp>
 #include <Tank/Utility/Vector.hpp>
 #include <Tank/Graphics/Image.hpp>
 #include "ZoomHack.hpp"
@@ -53,7 +54,15 @@ class CardGUI : public ZoomHack
 {
 public:
     CardGUI(tank::Vectorf pos, Card const* card);
+
+    void draw(tank::Vectorf camera) override;
+    static sf::Font cardFont;
+
+    constexpr static tank::Vectoru dimensions = { 46, 64 };
 private:
+    sf::Text text_;
+
+    static bool fontLoaded;
 };
 
 #endif /* CARD_HPP */

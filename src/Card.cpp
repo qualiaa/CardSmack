@@ -2,9 +2,13 @@
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <Tank/System/Game.hpp>
 #include "Resources.hpp"
 #include "Deck.hpp"
+
+sf::Font CardGUI::cardFont;
+bool CardGUI::fontLoaded = false;
 
 const double Card::rarityToChance[4] {
     std::exp(3), std::exp(2), std::exp(1), std::exp(0)
@@ -33,6 +37,12 @@ Card::Card(std::string xmlPath, std::string imagePath, Deck const& deck)
 CardGUI::CardGUI(tank::Vectorf pos, Card const* card)
     : ZoomHack(pos)
 {
+    if (not fontLoaded)
+    {
+        cardFont.loadFromFile("res/fnt/gothic_pixel.ttf");
+        fontLoaded = true;
+    }
+
     makeGraphic<tank::Image>(card->deck.backing);
     makeGraphic<tank::Image>(card->deck.rarity[card->getRarity()]);
 
@@ -46,5 +56,25 @@ CardGUI::CardGUI(tank::Vectorf pos, Card const* card)
         makeGraphic<tank::Image>(res::costIcon)->setOrigin({- 3.f, - 16.f - i * 9.f});
     }
 
+    text_.setString(card->getName());
+    text_.setFont(cardFont);
+    text_.setCharacterSize(18);
     makeGraphic<tank::Image>(card->getImage());
+}
+
+void CardGUI::draw(tank::Vectorf cam)
+{
+    ZoomHack::draw(cam);
+
+    tank::Vectorf pos = (getPos() + tank::Vectorf{dimensions.x / 2, 5}) * ZoomHack::getScale();
+
+    sf::FloatRect textRect = text_.getLocalBounds();
+    text_.setOrigin(textRect.left + textRect.width / 2.f, 0.f);
+
+    float angle = getRotation();
+
+    text_.setPosition({pos.x, pos.y});
+    text_.setRotation(angle);
+
+    tank::Game::window()->SFMLWindow().draw(text_);
 }
