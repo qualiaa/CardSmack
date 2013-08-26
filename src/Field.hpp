@@ -36,12 +36,14 @@ private:
 class FieldGUI : public tank::Entity
 {
 public:
-    FieldGUI(tank::Vectorf pos, Field const&);
+    FieldGUI(tank::Vectorf pos, Field const&, bool faceUp);
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
 private:
     Field const& field_;
+    int direction_;
 
+    static constexpr int attackDistance = 6;
     std::array<CardSlot, 6> cardSlots_;
 };
 
