@@ -12,6 +12,7 @@
 
 sf::Font CardSlot::cardFont;
 bool CardSlot::fontLoaded = false;
+const tank::Vectoru CardSlot::dimensions = { 46, 64 };
 
 const double Card::rarityToChance[4] {
     std::exp(3), std::exp(2), std::exp(1), std::exp(0)
@@ -97,7 +98,7 @@ void CardSlot::draw(tank::Vectorf cam)
 
     if (card_ != nullptr)
     {
-        tank::Vectorf pos = (getPos() + tank::Vectorf{dimensions.x / 2, 5}) * ZoomHack::getScale();
+        tank::Vectorf pos = (getPos() + tank::Vectorf{dimensions.x / 2.f, 5}) * ZoomHack::getScale();
 
         sf::FloatRect textRect = text_.getLocalBounds();
         text_.setOrigin(std::floor(textRect.left + textRect.width / 2.f), 0.f);

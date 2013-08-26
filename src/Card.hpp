@@ -58,7 +58,7 @@ public:
 
     Card const* getCard() { return card_; }
 
-    static constexpr tank::Vectoru dimensions = { 46, 64 };
+    static const tank::Vectoru dimensions;
 private:
     sf::Text text_;
     Card const* card_;
