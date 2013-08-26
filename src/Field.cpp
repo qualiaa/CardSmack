@@ -105,5 +105,20 @@ void FieldGUI::draw(tank::Vectorf cam)
     for (unsigned int i = 0; i < 6; ++i)
     {
         cardSlots_[i].draw(cam);
+
+        if (field_.isActive(i))
+        {
+            tank::Vectorf pos = getPos() + tank::Vectorf{
+                        static_cast<float>(settings::cardSpace * i), 0.f};
+
+            float ratio = static_cast<float>(field_.getTimeRemaining(i)) /
+                          static_cast<float>(settings::cardTime * 1000);
+
+            std::cout << ratio << std::endl;
+
+            InvalidSlot slot(pos, false);
+            slot.setRatio(ratio);
+            slot.draw(cam);
+        }
     }
 }
