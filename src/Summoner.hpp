@@ -2,11 +2,11 @@
 #define SUMMONER_HPP
 
 #include <Tank/Utility/Timer.hpp>
-#include "Deck.hpp"
 #include "Field.hpp"
 #include "Hand.hpp"
 
 class MainState;
+class Deck;
 
 class Summoner
 {
