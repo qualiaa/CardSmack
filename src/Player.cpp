@@ -23,11 +23,11 @@ void Player::gameLogic(bool myTurn)
 {
     if (game_.eventHandler.check("shiftLeft"))
     {
-        hand_.shiftLeft();
+        shiftHandLeft();
     }
     else if (game_.eventHandler.check("shiftRight"))
     {
-        hand_.shiftRight();
+        shiftHandRight();
     }
 
     if (myTurn)
