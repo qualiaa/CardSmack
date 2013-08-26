@@ -26,7 +26,7 @@ Deck::Deck(std::string filePath)
             cards_.push_back(
                 Card(path.string(),
                      imageFolder + path.stem().string() + ".png",
-                     *this));
+                     this));
         }
     }
 

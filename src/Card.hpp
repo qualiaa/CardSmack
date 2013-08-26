@@ -23,7 +23,7 @@ class Deck;
 class Card
 {
 public:
-    Card(std::string xmlPath, std::string imagePath, Deck const& deck);
+    Card(std::string xmlPath, std::string imagePath, Deck const* deck);
 
     unsigned int getStrength() const { return strength_; }
     unsigned int getCost() const { return cost_; }
@@ -35,7 +35,7 @@ public:
 
     static const double rarityToChance[4];
 
-    Deck const& deck;
+    Deck const* deck;
 private:
     std::string name_;
     tank::Image image_;
@@ -46,17 +46,22 @@ private:
     Ability ability_;
 };
 
-class CardGUI : public ZoomHack
+class CardSlot : public ZoomHack
 {
 public:
-    CardGUI(tank::Vectorf pos, Card const* card);
+    CardSlot(tank::Vectorf pos = {0.f, 0.f}, Card const* card = nullptr);
+
+    void setCard(Card const*);
 
     void draw(tank::Vectorf camera) override;
     static sf::Font cardFont;
 
+    Card const* getCard() { return card_; }
+
     constexpr static tank::Vectoru dimensions = { 46, 64 };
 private:
     sf::Text text_;
+    Card const* card_;
 
     static bool fontLoaded;
 };
