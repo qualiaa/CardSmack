@@ -26,8 +26,9 @@ class Card
 public:
     Card(std::string xmlPath, std::string imagePath);
 
-    unsigned int getRelativeChance() const { return relativeChance_; }
     unsigned int getStrength() const { return strength_; }
+    unsigned int getCost() const { return cost_; }
+    unsigned int getRelativeChance() const { return relativeChance_; }
     tank::Image const& getImage() const { return image_; }
     std::string getName() const { return name_; }
     Ability getAbility() const { return ability_; }
