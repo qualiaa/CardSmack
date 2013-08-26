@@ -1,6 +1,5 @@
 #include "Deck.hpp"
 
-#include <iostream>
 #include <stdexcept>
 #include <exception>
 #include <numeric>
@@ -8,6 +7,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
+#include <Tank/System/Game.hpp>
 
 const double Card::rarityToChance[4] {
     std::exp(3), std::exp(2), std::exp(1), std::exp(0)
@@ -19,13 +19,12 @@ Deck::Deck(std::string filePath)
     std::string xmlFolder = filePath + "/xml";
     std::string imageFolder = filePath + "/gfx";
 
-    std::cout << "Loading deck " << filePath << std::endl;
+    tank::Game::log << "Loading deck " << filePath << std::endl;
 
     for (boost::filesystem::directory_iterator fileIter(xmlFolder);
          fileIter != boost::filesystem::directory_iterator();
          ++fileIter)
     {
-        std::cout << fileIter->path().extension() << std::endl;
         if (fileIter->path().extension() == ".xml")
         {
             auto path = fileIter->path();
@@ -68,8 +67,8 @@ Card const* Deck::drawCard() const
 
 Card::Card(std::string xmlPath, std::string imagePath)
 {
-    std::cout << "Attempting to load card " << xmlPath
-              << " with image " << imagePath << std::endl;
+    tank::Game::log << "Attempting to load card " << xmlPath
+                    << " with image " << imagePath << std::endl;
 
     boost::property_tree::ptree cardTree;
     boost::property_tree::read_xml(xmlPath, cardTree);
@@ -82,10 +81,4 @@ Card::Card(std::string xmlPath, std::string imagePath)
 
     imagePath = cardTree.get("image",imagePath);
     image_.load(imagePath);
-
-    std::cout << "Name: " << name_ << std::endl;
-    std::cout << "Strength: " << strength_ << std::endl;
-    std::cout << "Cost: " << cost_ << std::endl;
-    std::cout << "Relative Chance: " << relativeChance_ << std::endl;
-    std::cout << "Image: " << imagePath << std::endl;
 }
