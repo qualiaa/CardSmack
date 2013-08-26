@@ -1,5 +1,7 @@
 #include "Card.hpp"
 
+#include <iostream>
+
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include <SFML/Graphics/RenderWindow.hpp>
@@ -56,9 +58,15 @@ CardGUI::CardGUI(tank::Vectorf pos, Card const* card)
         makeGraphic<tank::Image>(res::costIcon)->setOrigin({- 3.f, - 16.f - i * 9.f});
     }
 
+    if (card->getAbility())
+    {
+        std::cout << "Has ability: " << card->getAbility() << std::endl;
+        makeGraphic<tank::Image>(res::abilities[card->getAbility()]);
+    }
+
     text_.setString(card->getName());
     text_.setFont(cardFont);
-    text_.setCharacterSize(18);
+    text_.setCharacterSize(16);
     makeGraphic<tank::Image>(card->getImage());
 }
 
