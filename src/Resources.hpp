@@ -12,6 +12,10 @@ struct res
     static const tank::Image costIcon;
     static const tank::Image cardInactive;
     static const tank::Image playingField;
+    static const tank::Image playerHealth;
+    static const tank::Image playerTime;
+    static const tank::Image playerMana;
+    static const tank::Image enemyHealth;
 };
 
 #endif /* RESOURCES_HPP */
