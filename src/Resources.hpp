@@ -11,6 +11,7 @@ struct res
     static const tank::Image powerIcon;
     static const tank::Image costIcon;
     static const tank::Image cardInactive;
+    static const tank::Image playingField;
 };
 
 #endif /* RESOURCES_HPP */
