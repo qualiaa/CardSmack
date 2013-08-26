@@ -1,17 +1,22 @@
+#ifndef RESOURCES_HPP
+#define RESOURCES_HPP
+
 #include <Tank/Graphics/Image.hpp>
 
-namespace res
+struct res
 {
-    namespace abilities
+    struct abilities
     {
-        tank::Image blockLeft("res/gfx/CardBlockL.png");
-        tank::Image blockRight("res/gfx/CardBlockR.png");
-        tank::Image directDamage("res/gfx/CardDirectDamate.png");
-        tank::Image doubleDamage("res/gfx/CardDoubleDamage.png");
-        tank::Image healthGain("res/gfx/CardHealthGain.png");
-        tank::Image manaGain("res/gfx/CardManaGain.png");
-    }
+        static const tank::Image blockLeft;
+        static const tank::Image blockRight;
+        static const tank::Image directDamage;
+        static const tank::Image doubleDamage;
+        static const tank::Image healthGain;
+        static const tank::Image manaGain;
+    };
 
-    tank::Image powerIcon("res/gfx/CardPower.png");
-    tank::Image costIcon("res/gfx/CardCost.png");
-} /* namespace resources */
+    static const tank::Image powerIcon;
+    static const tank::Image costIcon;
+};
+
+#endif /* RESOURCES_HPP */
