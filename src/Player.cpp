@@ -67,7 +67,7 @@ void Player::makeAction(unsigned int slot)
 {
     if (field_.isActive(slot))
     {
-        field_.toggleAttack(slot);
+        toggleAttack(slot);
     }
     else
     {

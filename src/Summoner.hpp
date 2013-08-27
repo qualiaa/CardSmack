@@ -48,14 +48,4 @@ protected:
     MainState& game_;
 };
 
-class AI : public Summoner
-{
-public:
-    AI(Deck const* deck, MainState& game): Summoner(deck,game) {}
-private:
-    virtual void gameLogic(unsigned int turnTime) override;
-
-    tank::Timer moveTimer_;
-};
-
 #endif /* SUMMONER_HPP */

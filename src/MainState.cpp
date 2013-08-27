@@ -5,6 +5,7 @@
 #include "Resources.hpp"
 #include "Settings.hpp"
 #include "Player.hpp"
+#include "AI.hpp"
 #include "HealthBar.hpp"
 #include "ManaBar.hpp"
 #include "TimeBar.hpp"
@@ -27,10 +28,10 @@ MainState::MainState()
     makeEntity<tank::Entity>(tank::Vectorf{})->
         makeGraphic<tank::Image>(res::playingField);
     makeEntity<HandGUI>(tank::Vectorf {56.f, 216.f }, summoners_[0].get());
-    makeEntity<FieldGUI>(tank::Vectorf {56.f, 128.f}, 
+    makeEntity<FieldGUI>(tank::Vectorf {56.f, 128.f},
                          summoners_[0]->getField(),
                          true);
-    makeEntity<FieldGUI>(tank::Vectorf {56.f, 40.f},
+    makeEntity<FieldGUI>(tank::Vectorf {56.f, 48.f},
                          summoners_[1]->getField(),
                          false);
 
