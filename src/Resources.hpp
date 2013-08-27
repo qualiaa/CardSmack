@@ -22,6 +22,11 @@ struct res
 
     static const tank::Image menuScreen;
     static const tank::Image menuItems;
+
+    static const tank::Image tut1;
+    static const tank::Image tut2;
+
+    static const tank::Image credits;
 };
 
 #endif /* RESOURCES_HPP */

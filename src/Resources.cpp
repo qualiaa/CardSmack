@@ -25,3 +25,8 @@ const tank::Image res::mana{"res/gfx/Mana.png"};
 
 const tank::Image res::menuScreen{"res/gfx/MainMenu.png"};
 const tank::Image res::menuItems{"res/gfx/MenuItems.png"};
+
+const tank::Image res::tut1{"res/gfx/Tutorial1.png"};
+const tank::Image res::tut2{"res/gfx/Tutorial2.png"};
+
+const tank::Image res::credits{"res/gfx/Credits.png"};

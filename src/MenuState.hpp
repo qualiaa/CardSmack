@@ -2,8 +2,8 @@
 #define MENUSTATE_HPP
 
 #include <Tank/System/State.hpp>
+#include <Tank/System/Entity.hpp>
 #include <Tank/Graphics/Animation.hpp>
-#include "Resources.hpp"
 
 class MenuItems : public tank::Entity
 {
