@@ -28,14 +28,13 @@ public:
 
     std::string name;
 
-    void beginTurn();
-    void endTurn();
 protected:
     virtual void gameLogic(unsigned int turnTime) = 0;
     void play(unsigned int slot);
     void shiftHandLeft();
     void shiftHandRight();
     void toggleAttack(unsigned int slot);
+    void endTurn();
 
     unsigned int life_;
     unsigned int time_;

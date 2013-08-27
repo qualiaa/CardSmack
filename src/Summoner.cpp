@@ -16,12 +16,9 @@ Summoner::Summoner(Deck const* deck, MainState& game)
     manaTimer_.start();
 }
 
-void Summoner::beginTurn()
-{
-}
-
 void Summoner::endTurn()
 {
+    game_.endTurn();
 }
 
 void Summoner::damage(unsigned int damage)

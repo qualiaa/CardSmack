@@ -20,7 +20,7 @@ MainState::MainState()
     }
 
     summoners_[0].reset(new Player(decks_.back(), *this));
-    summoners_[1].reset(new AI(decks_.back(), *this));
+    summoners_[1].reset(new AI(decks_.front(), *this));
 
     summoners_[0]->name = "Player";
     summoners_[1]->name = "AI";
@@ -54,14 +54,8 @@ MainState::~MainState()
 
 void MainState::endTurn()
 {
-    summoners_[currentPlayer_]->endTurn();
-
     resolveAttacks();
-
     currentPlayer_ = not currentPlayer_;
-    summoners_[currentPlayer_]->beginTurn();
-
-    std::cout << summoners_[currentPlayer_]->name << "'s turn." << std::endl;
     turnTimer_.start();
 }
 
