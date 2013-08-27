@@ -1,5 +1,8 @@
 #include "AI.hpp"
 
+AI::AI(Deck const* deck, MainState& game)
+    : Summoner(deck,game) {}
+
 void AI::gameLogic(unsigned int turnTime)
 {
     if (turnTime)
@@ -8,14 +11,29 @@ void AI::gameLogic(unsigned int turnTime)
         {
             moveTimer_.start();
         }
-        else if (moveTimer_.getTicks() > 4500)
+        else if (moveTimer_.getTicks() > 1500)
         {
+            tick(turnTime);
             moveTimer_.stop();
-            game_.endTurn();
-        }
-        else if (moveTimer_.getTicks() > 2500)
-        {
-            play(0);
         }
     }
+}
+
+void AI::tick(unsigned int turnTime)
+{
+    unsigned int mostPowerful = 0;
+    for (int i = 0; i < 6; ++i)
+    {
+        if (not field_.isActive(i))
+        {
+            if (hand_.getCard(i)->getStrength() >
+                hand_.getCard(mostPowerful)->getStrength())
+            {
+                mostPowerful = i;
+            }
+        }
+
+    }
+
+    play(mostPowerful);
 }

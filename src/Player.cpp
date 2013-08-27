@@ -58,7 +58,7 @@ void Player::gameLogic(unsigned int turnTime)
         }
         if (game_.eventHandler.check("endTurn"))
         {
-            game_.endTurn();
+            endTurn();
         }
     }
 }
