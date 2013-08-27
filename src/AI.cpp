@@ -32,8 +32,8 @@ void AI::tick(unsigned int turnTime)
                 mostPowerful = i;
             }
         }
-
     }
 
     play(mostPowerful);
+    toggleAttack(mostPowerful);
 }
