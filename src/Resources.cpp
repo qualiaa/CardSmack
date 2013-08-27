@@ -22,3 +22,4 @@ const tank::Image res::enemyHealth{"res/gfx/EnemyBar.png"};
 const tank::Image res::health{"res/gfx/Health.png"};
 const tank::Image res::time{"res/gfx/Time.png"};
 const tank::Image res::mana{"res/gfx/Mana.png"};
+const tank::Image res::menuScreen{"res/gfx/MainMenu.png"};
