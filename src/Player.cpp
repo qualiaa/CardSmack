@@ -72,5 +72,6 @@ void Player::makeAction(unsigned int slot)
     else
     {
         play(slot);
+        toggleAttack(slot);
     }
 }
