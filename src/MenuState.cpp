@@ -4,6 +4,7 @@
 #include "Resources.hpp"
 #include "MainState.hpp"
 #include "Tutorial.hpp"
+#include "Credits.hpp"
 
 const std::string MenuItems::buttons[4] = {
     "play", "tutorial", "credits", "quit"
@@ -54,7 +55,7 @@ void MenuItems::update()
             tank::Game::makeState<Tutorial>();
             break;
         case 2:
-            //tank::Game::makeState<Tutorial>();
+            tank::Game::makeState<Credits>();
             break;
         case 3:
             tank::Game::stop();

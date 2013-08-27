@@ -2,7 +2,6 @@
 
 #include <Tank/System/Game.hpp>
 #include "Resources.hpp"
-#include "MainState.hpp"
 
 Tutorial::Tutorial()
 {
