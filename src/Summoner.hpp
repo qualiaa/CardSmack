@@ -13,13 +13,14 @@ class Summoner
 public:
     Summoner(Deck const* deck, MainState& game);
 
-    void update(bool myTurn);
+    void update(unsigned int turnTime);
 
     void damage (unsigned int deeps);
     void heal (unsigned int antideeps);
 
     unsigned int getLife() const { return life_; }
     unsigned int getMana() const { return mana_; }
+    unsigned int getTime() const { return time_; }
     unsigned int getManaTicks() const { return manaTimer_.getTicks(); }
 
     Field& getField() { return field_; }
@@ -30,13 +31,14 @@ public:
     void beginTurn();
     void endTurn();
 protected:
-    virtual void gameLogic(bool myTurn) = 0;
+    virtual void gameLogic(unsigned int turnTime) = 0;
     void play(unsigned int slot);
     void shiftHandLeft();
     void shiftHandRight();
     void toggleAttack(unsigned int slot);
 
     unsigned int life_;
+    unsigned int time_;
     unsigned int mana_;
 
     Field field_;
@@ -51,7 +53,7 @@ class AI : public Summoner
 public:
     AI(Deck const* deck, MainState& game): Summoner(deck,game) {}
 private:
-    virtual void gameLogic(bool myTurn) override;
+    virtual void gameLogic(unsigned int turnTime) override;
 
     tank::Timer moveTimer_;
 };

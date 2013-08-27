@@ -45,8 +45,10 @@ void Summoner::heal(unsigned int heal)
     }
 }
 
-void Summoner::update(bool myTurn)
+void Summoner::update(unsigned int turnTime)
 {
+    time_ = turnTime;
+
     field_.update();
 
     if (mana_ < settings::maxMana and not manaTimer_.isStarted())
@@ -66,7 +68,7 @@ void Summoner::update(bool myTurn)
         manaTimer_.stop();
     }
 
-    gameLogic(myTurn);
+    gameLogic(turnTime);
 }
 
 void Summoner::play(unsigned int slot)
@@ -117,9 +119,9 @@ void Summoner::toggleAttack(unsigned int slot)
 {
 }
 
-void AI::gameLogic(bool myTurn)
+void AI::gameLogic(unsigned int turnTime)
 {
-    if (myTurn)
+    if (turnTime)
     {
         if (not moveTimer_.isStarted())
         {

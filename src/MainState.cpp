@@ -5,6 +5,9 @@
 #include "Resources.hpp"
 #include "Settings.hpp"
 #include "Player.hpp"
+#include "HealthBar.hpp"
+#include "ManaBar.hpp"
+#include "TimeBar.hpp"
 
 MainState::MainState()
 {
@@ -31,6 +34,11 @@ MainState::MainState()
                          summoners_[1]->getField(),
                          false);
 
+    makeEntity<HealthBar>(summoners_[1].get(), false);
+    makeEntity<HealthBar>(summoners_[0].get(), true);
+    makeEntity<TimeBar>(summoners_[0].get());
+    makeEntity<ManaBar>(summoners_[0].get());
+
     turnTimer_.start();
 }
 
@@ -53,17 +61,17 @@ void MainState::endTurn()
     summoners_[currentPlayer_]->beginTurn();
 
     std::cout << summoners_[currentPlayer_]->name << "'s turn." << std::endl;
+    turnTimer_.start();
 }
 
 void MainState::update()
 {
-    summoners_[currentPlayer_]->update(true);
-    summoners_[not currentPlayer_]->update(false);
+    summoners_[currentPlayer_]->update(turnTimer_.getTicks());
+    summoners_[not currentPlayer_]->update(0);
 
     if (turnTimer_.getTicks() > 1000 * settings::turnTime)
     {
         endTurn();
-        turnTimer_.start();
     }
 
     tank::State::update();

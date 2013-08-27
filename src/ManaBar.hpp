@@ -1,14 +1,14 @@
-#ifndef HEALTHBAR_HPP
-#define HEALTHBAR_HPP
+#ifndef MANABAR_HPP
+#define MANABAR_HPP
 
 #include <Tank/System/Entity.hpp>
 #include <Tank/Graphics/Image.hpp>
 #include "Summoner.hpp"
 
-class HealthBar : public tank::Entity
+class ManaBar : public tank::Entity
 {
 public:
-    HealthBar(Summoner const* summoner, bool player);
+    ManaBar(Summoner const* summoner);
 
     virtual void update() override;
 private:
@@ -19,4 +19,4 @@ private:
     static const unsigned int maxWidth;
 };
 
-#endif /* HEALTHBAR_HPP */
+#endif /* MANABAR_HPP */

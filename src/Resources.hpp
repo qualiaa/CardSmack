@@ -16,6 +16,9 @@ struct res
     static const tank::Image playerTime;
     static const tank::Image playerMana;
     static const tank::Image enemyHealth;
+    static const tank::Image health;
+    static const tank::Image time;
+    static const tank::Image mana;
 };
 
 #endif /* RESOURCES_HPP */

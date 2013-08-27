@@ -9,7 +9,7 @@ public:
     Player(Deck const* deck, MainState& game);
 
 private:
-    virtual void gameLogic(bool myTurn) override;
+    virtual void gameLogic(unsigned int turnTime) override;
     inline void makeAction(unsigned int slot);
 };
 
