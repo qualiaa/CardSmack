@@ -9,7 +9,6 @@ public:
     Credits();
 
     virtual void update() override;
-private:
 };
 
 #endif /* CREDITS_HPP */
