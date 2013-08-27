@@ -21,6 +21,7 @@ struct res
     static const tank::Image mana;
 
     static const tank::Image menuScreen;
+    static const tank::Image menuItems;
 };
 
 #endif /* RESOURCES_HPP */

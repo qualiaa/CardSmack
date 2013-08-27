@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <boost/filesystem.hpp>
+#include <Tank/System/Game.hpp>
 #include "Resources.hpp"
 #include "Settings.hpp"
 #include "Player.hpp"
@@ -41,6 +42,8 @@ MainState::MainState()
     makeEntity<ManaBar>(summoners_[0].get());
 
     turnTimer_.start();
+
+    eventHandler.define("quit", { tank::Key::Escape });
 }
 
 MainState::~MainState()
@@ -56,6 +59,15 @@ void MainState::endTurn()
 {
     resolveAttacks();
     currentPlayer_ = not currentPlayer_;
+
+    for (auto& p : summoners_)
+    {
+        if (p->getLife() == 0)
+        {
+            tank::Game::popState();
+        }
+    }
+
     turnTimer_.start();
 }
 
@@ -67,6 +79,11 @@ void MainState::update()
     if (turnTimer_.getTicks() > 1000 * settings::turnTime)
     {
         endTurn();
+    }
+
+    if (eventHandler.check("quit"))
+    {
+        tank::Game::popState();
     }
 
     tank::State::update();
