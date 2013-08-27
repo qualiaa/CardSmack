@@ -17,7 +17,7 @@ const tank::Image res::cardInactive{"res/gfx/CardInactive.png"};
 const tank::Image res::playingField{"res/gfx/Playspace.png"};
 const tank::Image res::playerHealth{"res/gfx/HealthBar.png"};
 const tank::Image res::playerTime{"res/gfx/TimeBar.png"};
-const tank::Image res::playerMana{"res/gfx/ManaBarClear.png"};
+const tank::Image res::playerMana{"res/gfx/ManaBar.png"};
 const tank::Image res::enemyHealth{"res/gfx/EnemyBar.png"};
 const tank::Image res::health{"res/gfx/Health.png"};
 const tank::Image res::time{"res/gfx/Time.png"};
