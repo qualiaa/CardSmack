@@ -8,5 +8,6 @@ class HealthBar : tank::Entity
 public:
     HealthBar(bool player);
 private:
-}
+};
+
 #endif /* HEALTHBAR_HPP */

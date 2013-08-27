@@ -34,6 +34,7 @@ protected:
     void play(unsigned int slot);
     void shiftHandLeft();
     void shiftHandRight();
+    void toggleAttack(unsigned int slot);
 
     unsigned int life_;
     unsigned int mana_;
