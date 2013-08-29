@@ -1,7 +1,5 @@
 #include "Card.hpp"
 
-#include <iostream>
-
 #include <cmath>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>

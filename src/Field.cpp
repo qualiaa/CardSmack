@@ -1,6 +1,5 @@
 #include "Field.hpp"
 
-#include <iostream>
 #include "Settings.hpp"
 
 Field::Field() { }
@@ -31,9 +30,6 @@ unsigned int Field::getTimeRemaining(unsigned int slot) const
 
 void Field::removeCard(unsigned int slot)
 {
-    std::cout << "[Slot " << slot << "] "
-              << slots_[slot].card->getName() << " dies" << std::endl;
-
     slots_[slot].card = nullptr;
     slots_[slot].timer.stop();
 }
@@ -60,17 +56,6 @@ void Field::toggleAttack(unsigned int slotIndex)
     Slot& slot = slots_[slotIndex];
 
     slot.attacking = not slot.attacking;
-
-    std::cout << "[Slot " << slotIndex << "] "
-              << "Set to ";
-    if(slot.attacking)
-    {
-        std::cout << "attack" << std::endl;
-    }
-    else
-    {
-        std::cout << "defend" << std::endl;
-    }
 }
 
 bool Field::isAttacking(unsigned int slotIndex) const

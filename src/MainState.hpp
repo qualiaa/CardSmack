@@ -12,7 +12,6 @@ class MainState : public tank::State
 {
 public:
     MainState();
-    virtual ~MainState();
 
     void endTurn();
 
@@ -20,11 +19,11 @@ public:
 private:
     void resolveAttacks();
 
-    std::unique_ptr<Summoner> summoners_[2];
+    std::array<std::unique_ptr<Summoner>,2> summoners_;
     bool currentPlayer_;
     tank::Timer turnTimer_;
 
-    std::vector<Deck*> decks_;
+    std::vector<std::unique_ptr<Deck>> decks_;
 };
 
 #endif /* MAINSTATE_HPP */

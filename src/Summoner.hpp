@@ -11,7 +11,7 @@ class Deck;
 class Summoner
 {
 public:
-    Summoner(Deck const* deck, MainState& game);
+    Summoner(std::unique_ptr<Deck> const&, MainState& game);
 
     void update(unsigned int turnTime);
 

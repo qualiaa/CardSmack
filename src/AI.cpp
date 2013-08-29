@@ -1,6 +1,6 @@
 #include "AI.hpp"
 
-AI::AI(Deck const* deck, MainState& game)
+AI::AI(std::unique_ptr<Deck> const& deck, MainState& game)
     : Summoner(deck,game) {}
 
 void AI::gameLogic(unsigned int turnTime)

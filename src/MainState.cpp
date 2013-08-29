@@ -1,6 +1,5 @@
 #include "MainState.hpp"
 
-#include <iostream>
 #include <boost/filesystem.hpp>
 #include <Tank/System/Game.hpp>
 #include "Resources.hpp"
@@ -17,7 +16,7 @@ MainState::MainState()
          deckIter != boost::filesystem::directory_iterator();
          ++deckIter)
     {
-        decks_.push_back(new Deck(deckIter->path().string()));
+        decks_.emplace_back(new Deck(deckIter->path().string()));
     }
 
     summoners_[0].reset(new Player(decks_.back(), *this));
@@ -46,14 +45,6 @@ MainState::MainState()
     eventHandler.define("quit", { tank::Key::Escape });
 }
 
-MainState::~MainState()
-{
-    while (not decks_.empty())
-    {
-        delete decks_.back();
-        decks_.pop_back();
-    }
-}
 
 void MainState::endTurn()
 {
@@ -151,9 +142,4 @@ void MainState::resolveAttacks()
 
     summoners_[0]->damage(playerDamage);
     summoners_[1]->damage(enemyDamage);
-
-    std::cout << summoners_[0]->name << " takes " << playerDamage << " damage "
-              << "and  is on " << summoners_[0]->getLife() << " health" << std::endl;
-    std::cout << summoners_[1]->name << " takes " << enemyDamage << " damage "
-              << "and  is on " << summoners_[1]->getLife() << " health" << std::endl;
 }

@@ -1,13 +1,13 @@
 #include "Summoner.hpp"
 
 #include <algorithm>
-#include <iostream>
+#include <Tank/System/Game.hpp>
 #include "Settings.hpp"
 #include "MainState.hpp"
 #include "Deck.hpp"
 #include "Card.hpp"
 
-Summoner::Summoner(Deck const* deck, MainState& game)
+Summoner::Summoner(std::unique_ptr<Deck> const& deck, MainState& game)
     : life_(settings::maxLife)
     , mana_(settings::maxMana)
     , hand_(deck, field_)
@@ -81,10 +81,6 @@ void Summoner::play(unsigned int slot)
     {
         return;
     }
-
-    std::cout << "[Slot " << slot << "] "
-              << "Played " << card->getName()
-              << " for " << manaCost << " mana" << std::endl;
 
     mana_ -= manaCost;
     field_.setCard(hand_.releaseCard(slot), slot);

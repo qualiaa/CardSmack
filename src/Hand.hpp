@@ -11,7 +11,7 @@ class Summoner;
 class Hand
 {
 public:
-    Hand(Deck const* deck_, Field& field);
+    Hand(std::unique_ptr<Deck> const&, Field& field);
 
     Card const* getCard(unsigned int slot) const;
     Card const* releaseCard(unsigned int slot);
@@ -21,7 +21,7 @@ public:
     void shiftRight();
     void shiftLeft();
 private:
-    Deck const* deck_;
+    std::unique_ptr<Deck> const& deck_;
     std::array<Card const*, 6> cards_;
 };
 

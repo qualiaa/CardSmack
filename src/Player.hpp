@@ -6,7 +6,7 @@
 class Player : public Summoner
 {
 public:
-    Player(Deck const* deck, MainState& game);
+    Player(std::unique_ptr<Deck> const& deck, MainState& game);
 
 private:
     virtual void gameLogic(unsigned int turnTime) override;

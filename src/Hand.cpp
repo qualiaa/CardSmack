@@ -1,12 +1,10 @@
 #include "Hand.hpp"
 
-#include <iostream>
-
 #include "Resources.hpp"
 #include "Settings.hpp"
 #include "Summoner.hpp"
 
-Hand::Hand(Deck const* deck, Field& field)
+Hand::Hand(std::unique_ptr<Deck> const& deck, Field& field)
     : deck_(deck)
 {
     for (unsigned int i = 0; i < cards_.size(); ++i)
