@@ -11,7 +11,9 @@
 #include "TimeBar.hpp"
 
 MainState::MainState()
+    : currentPlayer_(0)
 {
+    //Load the Decks from res/decks
     for (boost::filesystem::directory_iterator deckIter("res/decks");
          deckIter != boost::filesystem::directory_iterator();
          ++deckIter)
@@ -19,15 +21,17 @@ MainState::MainState()
         decks_.emplace_back(new Deck(deckIter->path().string()));
     }
 
+    //Create the players
     summoners_[0].reset(new Player(decks_.back(), *this));
     summoners_[1].reset(new AI(decks_.front(), *this));
 
     summoners_[0]->name = "Player";
     summoners_[1]->name = "AI";
 
+    //Set up the GUI
     makeEntity<tank::Entity>(tank::Vectorf{})->
         makeGraphic<tank::Image>(res::playingField);
-    makeEntity<HandGUI>(tank::Vectorf {56.f, 216.f }, summoners_[0].get());
+    makeEntity<HandGUI>(tank::Vectorf {56.f, 216.f }, summoners_[0]);
     makeEntity<FieldGUI>(tank::Vectorf {56.f, 128.f},
                          summoners_[0]->getField(),
                          true);
@@ -35,14 +39,14 @@ MainState::MainState()
                          summoners_[1]->getField(),
                          false);
 
-    makeEntity<HealthBar>(summoners_[1].get(), false);
-    makeEntity<HealthBar>(summoners_[0].get(), true);
-    makeEntity<TimeBar>(summoners_[0].get());
-    makeEntity<ManaBar>(summoners_[0].get());
-
-    turnTimer_.start();
+    makeEntity<HealthBar>(summoners_[1], false);
+    makeEntity<HealthBar>(summoners_[0], true);
+    makeEntity<TimeBar>(summoners_[0]);
+    makeEntity<ManaBar>(summoners_[0]);
 
     eventHandler.define("quit", { tank::Key::Escape });
+
+    turnTimer_.start();
 }
 
 
@@ -72,12 +76,12 @@ void MainState::update()
         endTurn();
     }
 
+    tank::State::update();
+
     if (eventHandler.check("quit"))
     {
         tank::Game::popState();
     }
-
-    tank::State::update();
 }
 
 void MainState::resolveAttacks()

@@ -8,11 +8,11 @@
 class HealthBar : public tank::Entity
 {
 public:
-    HealthBar(Summoner const* summoner, bool player);
+    HealthBar(std::unique_ptr<Summoner> const&, bool player);
 
     virtual void update() override;
 private:
-    Summoner const* summoner_;
+    std::unique_ptr<Summoner> const& summoner_;
     tank::observing_ptr<tank::Image> bar_;
 
     void setRatio(float ratio);

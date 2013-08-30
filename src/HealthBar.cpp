@@ -6,7 +6,7 @@
 
 const unsigned int HealthBar::maxWidth = 446;
 
-HealthBar::HealthBar(Summoner const* summoner, bool player)
+HealthBar::HealthBar(std::unique_ptr<Summoner> const& summoner, bool player)
     : Entity(tank::Vectorf{0.f, 0.f})
     , summoner_(summoner)
 {

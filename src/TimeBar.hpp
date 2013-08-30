@@ -8,11 +8,11 @@
 class TimeBar : public tank::Entity
 {
 public:
-    TimeBar(Summoner const* summoner);
+    TimeBar(std::unique_ptr<Summoner> const& summoner);
 
     virtual void update() override;
 private:
-    Summoner const* summoner_;
+    std::unique_ptr<Summoner> const& summoner_;
     tank::observing_ptr<tank::Image> bar_;
 
     void setRatio(float ratio);

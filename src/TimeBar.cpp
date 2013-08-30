@@ -6,7 +6,7 @@
 
 const unsigned int TimeBar::maxWidth = 446;
 
-TimeBar::TimeBar(Summoner const* summoner)
+TimeBar::TimeBar(std::unique_ptr<Summoner> const& summoner)
     : Entity(tank::Vectorf{239.f, 625.f})
     , summoner_(summoner)
 {

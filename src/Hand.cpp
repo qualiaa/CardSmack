@@ -41,7 +41,7 @@ void Hand::shiftRight()
     std::rotate(cards_.begin(), cards_.end() - 1, cards_.end());
 }
 
-HandGUI::HandGUI(tank::Vectorf pos, Summoner* summoner)
+HandGUI::HandGUI(tank::Vectorf pos, std::unique_ptr<Summoner> const& summoner)
     : Entity(pos)
     , summoner_(summoner)
 {

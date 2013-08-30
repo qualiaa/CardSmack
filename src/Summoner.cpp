@@ -9,6 +9,7 @@
 
 Summoner::Summoner(std::unique_ptr<Deck> const& deck, MainState& game)
     : life_(settings::maxLife)
+    , time_(0)
     , mana_(settings::maxMana)
     , hand_(deck, field_)
     , game_(game)

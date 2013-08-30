@@ -19,10 +19,10 @@ public:
 private:
     void resolveAttacks();
 
-    std::array<std::unique_ptr<Summoner>,2> summoners_;
     bool currentPlayer_;
     tank::Timer turnTimer_;
 
+    std::array<std::unique_ptr<Summoner>,2> summoners_;
     std::vector<std::unique_ptr<Deck>> decks_;
 };
 

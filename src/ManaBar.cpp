@@ -8,7 +8,7 @@
 
 const unsigned int ManaBar::maxWidth = 446;
 
-ManaBar::ManaBar(Summoner const* summoner)
+ManaBar::ManaBar(std::unique_ptr<Summoner> const& summoner)
     : Entity(tank::Vectorf{239.f, 638.f})
     , summoner_(summoner)
 {

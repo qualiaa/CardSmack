@@ -28,12 +28,12 @@ private:
 class HandGUI : public tank::Entity
 {
 public:
-    HandGUI(tank::Vectorf pos, Summoner*);
+    HandGUI(tank::Vectorf pos, std::unique_ptr<Summoner> const&);
 
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
 private:
-    Summoner* summoner_;
+    std::unique_ptr<Summoner> const& summoner_;
 
     std::array<CardSlot, 6> cardSlots_;
 
