@@ -43,6 +43,7 @@ void Hand::shiftRight()
 
 HandGUI::HandGUI(tank::Vectorf pos, std::unique_ptr<Summoner> const& summoner)
     : Entity(pos)
+    , overlay_({})
     , summoner_(summoner)
 {
     for (unsigned int i = 0; i < 6; ++i)
@@ -75,7 +76,8 @@ void HandGUI::draw(tank::Vectorf cam)
             tank::Vectorf pos = getPos() + tank::Vectorf{
                         static_cast<float>(settings::cardSpace * i), 0.f};
 
-            InvalidSlot(pos, true).draw(cam);
+            overlay_.setPos(pos);
+            overlay_.draw(cam);
         }
     }
 }

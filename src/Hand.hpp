@@ -4,7 +4,7 @@
 #include <array>
 #include "Deck.hpp"
 #include "Field.hpp"
-#include "InactiveSlot.hpp"
+#include "CardOverlay.hpp"
 
 class Summoner;
 
@@ -33,6 +33,7 @@ public:
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
 private:
+    CardOverlay overlay_;
     std::unique_ptr<Summoner> const& summoner_;
 
     std::array<CardSlot, 6> cardSlots_;

@@ -65,6 +65,7 @@ bool Field::isAttacking(unsigned int slotIndex) const
 
 FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field, bool faceUp)
     : Entity(pos)
+    , overlay_({})
     , field_(field)
 {
     for (unsigned int i = 0; i < 6; ++i)
@@ -73,7 +74,14 @@ FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field, bool faceUp)
                               getPos().y});
     }
 
-    direction_ = 1 - 2 * faceUp;
+    if (faceUp)
+    {
+        direction_ = -1;
+    }
+    else
+    {
+        direction_ = 1;
+    }
 }
 
 void FieldGUI::update()
@@ -85,8 +93,8 @@ void FieldGUI::update()
             cardSlots_[i].setCard(field_.getCard(i));
         }
 
-        tank::Vectorf pos = getPos() + tank::Vectorf{static_cast<float>(settings::cardSpace * i), 
-                             0.f};
+        tank::Vectorf pos = getPos() +
+                tank::Vectorf{static_cast<float>(settings::cardSpace * i), 0.f};
 
         if (field_.isActive(i) and field_.isAttacking(i))
         {
@@ -110,9 +118,9 @@ void FieldGUI::draw(tank::Vectorf cam)
             float ratio = static_cast<float>(field_.getTimeRemaining(i)) /
                           static_cast<float>(settings::cardTime * 1000);
 
-            InvalidSlot slot(pos, false);
-            slot.setRatio(ratio);
-            slot.draw(cam);
+            overlay_.setPos(pos);
+            overlay_.setRatio(ratio);
+            overlay_.draw(cam);
         }
     }
 }

@@ -1,16 +1,15 @@
-#include "InactiveSlot.hpp"
+#include "CardOverlay.hpp"
 
 #include "Resources.hpp"
 
-InvalidSlot::InvalidSlot(tank::Vectorf pos, bool full)
+CardOverlay::CardOverlay(tank::Vectorf pos)
     : ZoomHack(pos)
 {
     image_ = makeGraphic<tank::Image>(res::cardInactive);
     dimensions_ = image_->getTextureSize();
-    setRatio(full);
 }
 
-void InvalidSlot::setRatio(float ratio)
+void CardOverlay::setRatio(float ratio)
 {
     unsigned int visible = dimensions_.y - std::round(ratio  * dimensions_.y);
 

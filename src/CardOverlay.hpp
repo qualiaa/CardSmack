@@ -1,13 +1,13 @@
-#ifndef INACTIVESLOT_HPP
-#define INACTIVESLOT_HPP
+#ifndef CARDOVERLAY_HPP
+#define CARDOVERLAY_HPP
 
 #include <Tank/Graphics/Image.hpp>
 #include "ZoomHack.hpp"
 
-class InvalidSlot : public ZoomHack
+class CardOverlay : public ZoomHack
 {
 public:
-    InvalidSlot(tank::Vectorf pos, bool full);
+    CardOverlay(tank::Vectorf pos);
     void setRatio(float);
 private:
     tank::Vectoru dimensions_;
@@ -15,4 +15,4 @@ private:
 
 };
 
-#endif
+#endif /* CARDOVERLAY_HPP */

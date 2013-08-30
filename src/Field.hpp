@@ -5,7 +5,7 @@
 #include <Tank/System/Entity.hpp>
 #include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
-#include "InactiveSlot.hpp"
+#include "CardOverlay.hpp"
 
 class Field
 {
@@ -40,6 +40,7 @@ public:
     virtual void update() override;
     virtual void draw(tank::Vectorf cam) override;
 private:
+    CardOverlay overlay_;
     Field const& field_;
     int direction_;
 
