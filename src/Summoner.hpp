@@ -27,7 +27,6 @@ public:
     Hand& getHand() { return hand_; }
 
     std::string name;
-
 protected:
     virtual void gameLogic(unsigned int turnTime) = 0;
     void play(unsigned int slot);

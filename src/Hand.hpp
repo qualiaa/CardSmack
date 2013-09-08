@@ -14,14 +14,15 @@ public:
     Hand(std::unique_ptr<Deck> const&, Field& field);
 
     Card const* getCard(unsigned int slot) const;
-    Card const* releaseCard(unsigned int slot);
-
     inline void drawCard(unsigned int slot);
+
+    bool play(unsigned int slot);
 
     void shiftRight();
     void shiftLeft();
 private:
     std::unique_ptr<Deck> const& deck_;
+    Field& field_;
     std::array<Card const*, 6> cards_;
 };
 

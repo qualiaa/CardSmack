@@ -6,6 +6,7 @@
 
 Hand::Hand(std::unique_ptr<Deck> const& deck, Field& field)
     : deck_(deck)
+    , field_(field)
 {
     for (unsigned int i = 0; i < cards_.size(); ++i)
     {
@@ -18,17 +19,22 @@ Card const* Hand::getCard(unsigned int slot) const
     return cards_[slot];
 }
 
-Card const* Hand::releaseCard(unsigned int slot)
-{
-    Card const* temp = cards_[slot];
-    drawCard(slot);
-
-    return temp;
-}
-
 void Hand::drawCard(unsigned int slot)
 {
     cards_[slot] = deck_->drawCard();
+}
+
+bool Hand::play(unsigned int slot)
+{
+    if (field_.isActive(slot))
+    {
+        return false;
+    }
+
+    field_.setCard(getCard(slot), slot);
+    drawCard(slot);
+
+    return true;
 }
 
 void Hand::shiftLeft()
@@ -55,7 +61,6 @@ HandGUI::HandGUI(tank::Vectorf pos, std::unique_ptr<Summoner> const& summoner)
 
 void HandGUI::update()
 {
-
     for (unsigned int i = 0; i < 6; ++i)
     {
         if (cardSlots_[i].getCard() != summoner_->getHand().getCard(i))

@@ -71,20 +71,18 @@ void Summoner::update(unsigned int turnTime)
 
 void Summoner::play(unsigned int slot)
 {
-    if (field_.isActive(slot))
-    {
-        return;
-    }
-
     Card const* card = hand_.getCard(slot);
+
     unsigned int manaCost = card->getCost();
     if (manaCost > mana_)
     {
         return;
     }
 
-    mana_ -= manaCost;
-    field_.setCard(hand_.releaseCard(slot), slot);
+    if (hand_.play(slot))
+    {
+        mana_ -= manaCost;
+    }
 }
 
 void Summoner::shiftHandLeft()
