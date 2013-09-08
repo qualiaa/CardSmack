@@ -2,6 +2,7 @@ CardSmack
 =========
 
 An [LD48](http://ludumdare.com) Jam entry.
+
 Theme: 10 Seconds
 
 [Entry Page](http://www.ludumdare.com/compo/ludum-dare-27/?action=preview&uid=6609)
@@ -9,16 +10,16 @@ Theme: 10 Seconds
 Requirements
 ------------
 
-[libsfml](http://sfml-dev.org)
-[libboost](http://boost.org)
+* [libsfml](http://sfml-dev.org)
+* [libboost](http://boost.org)
 
 Binaries
 --------
 
 ### Ludum Dare
-[Windows x86](http://gazokblog.co.uk/LD27.zip)
-[OS/X x64](http://gazokblog.co.uk/Cards_OSX.tar.xz)
-[Linux x64](http://gazokblog.co.uk/LD27.tar.gz)
+* [Windows x86](http://gazokblog.co.uk/LD27.zip)
+* [OS/X x64](http://gazokblog.co.uk/Cards_OSX.tar.xz)
+* [Linux x64](http://gazokblog.co.uk/LD27.tar.gz)
 
 Build
 -----
@@ -38,4 +39,5 @@ Credits
 -------
 
 Programming - [Jamie Bayne](http://gazokblog.co.uk)
+
 Graphics - [Ed Horsey](https://pixelatedview.wordpress.com/) (@SalamiChild)
