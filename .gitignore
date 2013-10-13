@@ -25,3 +25,4 @@ build*/
 *.user
 
 *.orig
+.ycm_extra_conf.py
