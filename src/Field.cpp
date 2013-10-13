@@ -1,5 +1,7 @@
 #include "Field.hpp"
 
+#include<iostream>
+#include<Tank/System/Game.hpp>
 #include "Settings.hpp"
 
 Field::Field() { }
@@ -63,10 +65,10 @@ bool Field::isAttacking(unsigned int slotIndex) const
     return slots_[slotIndex].attacking;
 }
 
-FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field, bool faceUp)
+FieldGUI::FieldGUI(tank::Vectorf pos, Field& field, bool faceUp)
     : Entity(pos)
+    , Observer(field)
     , overlay_({})
-    , field_(field)
 {
     for (unsigned int i = 0; i < 6; ++i)
     {
@@ -84,19 +86,19 @@ FieldGUI::FieldGUI(tank::Vectorf pos, Field const& field, bool faceUp)
     }
 }
 
-void FieldGUI::update()
+void FieldGUI::check(std::string message)
 {
     for (unsigned int i = 0; i < 6; ++i)
     {
-        if (cardSlots_[i].getCard() != field_.getCard(i))
+        if (cardSlots_[i].getCard() != subject_.getCard(i))
         {
-            cardSlots_[i].setCard(field_.getCard(i));
+            cardSlots_[i].setCard(subject_.getCard(i));
         }
 
         tank::Vectorf pos = getPos() +
                 tank::Vectorf{static_cast<float>(settings::cardSpace * i), 0.f};
 
-        if (field_.isActive(i) and field_.isAttacking(i))
+        if (subject_.isActive(i) and subject_.isAttacking(i))
         {
             pos.y += attackDistance * direction_;
         }
@@ -111,11 +113,11 @@ void FieldGUI::draw(tank::Vectorf cam)
     {
         cardSlots_[i].draw(cam);
 
-        if (field_.isActive(i))
+        if (subject_.isActive(i))
         {
             tank::Vectorf pos = cardSlots_[i].getPos();
 
-            float ratio = static_cast<float>(field_.getTimeRemaining(i)) /
+            float ratio = static_cast<float>(subject_.getTimeRemaining(i)) /
                           static_cast<float>(settings::cardTime * 1000);
 
             overlay_.setPos(pos);

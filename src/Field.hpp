@@ -4,10 +4,11 @@
 #include <array>
 #include <Tank/System/Entity.hpp>
 #include <Tank/Utility/Timer.hpp>
+#include "Observer.hpp"
 #include "Deck.hpp"
 #include "CardOverlay.hpp"
 
-class Field
+class Field : public Subject<Field>
 {
 public:
     struct Slot
@@ -33,15 +34,14 @@ private:
     std::array<Slot, 6> slots_;
 };
 
-class FieldGUI : public tank::Entity
+class FieldGUI : public tank::Entity, public Observer<Field>
 {
 public:
-    FieldGUI(tank::Vectorf pos, Field const&, bool faceUp);
-    virtual void update() override;
+    FieldGUI(tank::Vectorf pos, Field&, bool faceUp);
+    virtual void check(std::string message) override;
     virtual void draw(tank::Vectorf cam) override;
 private:
     CardOverlay overlay_;
-    Field const& field_;
     int direction_;
 
     static constexpr int attackDistance = 6;
