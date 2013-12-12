@@ -1,17 +1,19 @@
 #ifndef TUTORIAL_HPP
 #define TUTORIAL_HPP
 
-#include <Tank/System/State.hpp>
+#include <Tank/System/World.hpp>
 
-class Tutorial : public tank::State
+class Tutorial : public tank::World
 {
 public:
     Tutorial();
 
-    virtual void update() override;
 private:
     tank::observing_ptr<tank::Entity> tut1_;
     tank::observing_ptr<tank::Entity> tut2_;
+
+    void nextPage();
+    void previousPage();
 
     bool finished_;
 };

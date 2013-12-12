@@ -28,7 +28,7 @@ public:
 
     std::string name;
 protected:
-    virtual void gameLogic(unsigned int turnTime) = 0;
+    virtual void gameLogic(unsigned int turnTime) {}
     void play(unsigned int slot);
     void shiftHandLeft();
     void shiftHandRight();

@@ -32,7 +32,7 @@ public:
     HandGUI(tank::Vectorf pos, std::unique_ptr<Summoner> const&);
 
     virtual void update() override;
-    virtual void draw(tank::Vectorf cam) override;
+    virtual void draw(tank::Camera const&) override;
 private:
     CardOverlay overlay_;
     std::unique_ptr<Summoner> const& summoner_;

@@ -70,7 +70,7 @@ void HandGUI::update()
     }
 }
 
-void HandGUI::draw(tank::Vectorf cam)
+void HandGUI::draw(tank::Camera const& cam)
 {
     for (unsigned int i = 0; i < 6; ++i)
     {

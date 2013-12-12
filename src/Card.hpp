@@ -53,7 +53,7 @@ public:
 
     void setCard(Card const*);
 
-    void draw(tank::Vectorf camera) override;
+    void draw(tank::Camera const&) override;
     static sf::Font cardFont;
 
     Card const* getCard() { return card_; }

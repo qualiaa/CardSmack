@@ -1,14 +1,14 @@
 #ifndef ZOOMHACK_HPP
 #define ZOOMHACK_HPP
 
-#include "Tank/System/Entity.hpp"
-#include "Tank/Utility/Vector.hpp"
+#include <Tank/System/Entity.hpp>
+#include <Tank/Utility/Vector.hpp>
 
 class ZoomHack : public tank::Entity
 {
 public:
     ZoomHack(tank::Vectorf pos);
-    virtual void draw(tank::Vectorf camera) override;
+    virtual void draw(tank::Camera const&) override;
 
     static unsigned int getScale()
     {

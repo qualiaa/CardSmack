@@ -1,14 +1,12 @@
 #ifndef CREDITS_HPP
 #define CREDITS_HPP
 
-#include <Tank/System/State.hpp>
+#include <Tank/System/World.hpp>
 
-class Credits : public tank::State
+class Credits : public tank::World
 {
 public:
     Credits();
-
-    virtual void update() override;
 };
 
 #endif /* CREDITS_HPP */

@@ -1,76 +1,39 @@
 #include "Player.hpp"
 
-#include <Tank/System/EventHandler.hpp>
+#include <Tank/System/Keyboard.hpp>
 #include "MainState.hpp"
 
 Player::Player(std::unique_ptr<Deck> const& deck, MainState& game)
     : Summoner(deck, game)
 {
+    using kbd = tank::Keyboard;
+    using key = tank::Key;
+
     // TODO: Support Dvorak
-    game_.eventHandler.define("shiftLeft", { tank::Key::A });
-    game_.eventHandler.define("playSlot0", { tank::Key::S });
-    game_.eventHandler.define("playSlot1", { tank::Key::D });
-    game_.eventHandler.define("playSlot2", { tank::Key::F });
-    game_.eventHandler.define("playSlot3", { tank::Key::J });
-    game_.eventHandler.define("playSlot4", { tank::Key::K });
-    game_.eventHandler.define("playSlot5", { tank::Key::L });
-    game_.eventHandler.define("shiftRight", { tank::Key::SemiColon });
-    game_.eventHandler.define("endTurn", { tank::Key::Space });
-}
-
-void Player::gameLogic(unsigned int turnTime)
-{
-    if (game_.eventHandler.check("shiftLeft"))
-    {
-        shiftHandLeft();
-    }
-    else if (game_.eventHandler.check("shiftRight"))
-    {
-        shiftHandRight();
-    }
-
-    if (turnTime)
-    {
-        if (game_.eventHandler.check("playSlot0"))
-        {
-            makeAction(0);
-        }
-        if (game_.eventHandler.check("playSlot1"))
-        {
-            makeAction(1);
-        }
-        if (game_.eventHandler.check("playSlot2"))
-        {
-            makeAction(2);
-        }
-        if (game_.eventHandler.check("playSlot3"))
-        {
-            makeAction(3);
-        }
-        if (game_.eventHandler.check("playSlot4"))
-        {
-            makeAction(4);
-        }
-        if (game_.eventHandler.check("playSlot5"))
-        {
-            makeAction(5);
-        }
-        if (game_.eventHandler.check("endTurn"))
-        {
-            endTurn();
-        }
-    }
+    game_.connect(kbd::KeyPress(key::A), [this]{shiftHandLeft();});
+    game_.connect(kbd::KeyPress(key::S), [this]{makeAction(0);});
+    game_.connect(kbd::KeyPress(key::D), [this]{makeAction(1);});
+    game_.connect(kbd::KeyPress(key::F), [this]{makeAction(2);});
+    game_.connect(kbd::KeyPress(key::J), [this]{makeAction(3);});
+    game_.connect(kbd::KeyPress(key::K), [this]{makeAction(4);});
+    game_.connect(kbd::KeyPress(key::L), [this]{makeAction(5);});
+    game_.connect(kbd::KeyPress(key::SemiColon), [this]{shiftHandRight();});
+    game_.connect(kbd::KeyPress(key::Space) or kbd::KeyPress(key::Return),
+                          [this]{endTurn();});
 }
 
 void Player::makeAction(unsigned int slot)
 {
-    if (field_.isActive(slot))
+    if (time_ > 0)
     {
-        toggleAttack(slot);
-    }
-    else
-    {
-        play(slot);
-        toggleAttack(slot);
+        if (field_.isActive(slot))
+        {
+            toggleAttack(slot);
+        }
+        else
+        {
+            play(slot);
+            toggleAttack(slot);
+        }
     }
 }

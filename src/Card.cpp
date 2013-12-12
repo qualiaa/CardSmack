@@ -90,7 +90,7 @@ void CardSlot::setCard(Card const* card)
     makeGraphic<tank::Image>(card->getImage());
 }
 
-void CardSlot::draw(tank::Vectorf cam)
+void CardSlot::draw(tank::Camera const& cam)
 {
     ZoomHack::draw(cam);
 

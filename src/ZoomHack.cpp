@@ -6,7 +6,7 @@ ZoomHack::ZoomHack(tank::Vectorf pos)
     : Entity(pos)
 {}
 
-void ZoomHack::draw(tank::Vectorf camera)
+void ZoomHack::draw(tank::Camera const& camera)
 {
     for (auto& g : getGraphicList())
     {

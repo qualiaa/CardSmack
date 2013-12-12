@@ -3,12 +3,12 @@
 
 #include <vector>
 #include <memory>
-#include <Tank/System/State.hpp>
+#include <Tank/System/World.hpp>
 #include <Tank/Utility/Timer.hpp>
 #include "Deck.hpp"
 #include "Summoner.hpp"
 
-class MainState : public tank::State
+class MainState : public tank::World
 {
 public:
     MainState();

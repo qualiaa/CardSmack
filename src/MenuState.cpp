@@ -1,6 +1,7 @@
 #include "MenuState.hpp"
 
 #include <Tank/System/Game.hpp>
+#include <Tank/System/Keyboard.hpp>
 #include "Resources.hpp"
 #include "MainState.hpp"
 #include "Tutorial.hpp"
@@ -14,7 +15,7 @@ MenuItems::MenuItems()
     : tank::Entity(tank::Vectorf{224.f,440.f})
 {
     index_ = 0;
-    menuItems_ = makeGraphic<tank::Animation>(res::menuItems,
+    menuItems_ = makeGraphic<tank::FrameList>(res::menuItems,
                                               tank::Vectoru {547, 58});
 
     menuItems_->add(buttons[0], {0}, 0);
@@ -24,60 +25,70 @@ MenuItems::MenuItems()
     menuItems_->select(buttons[0]);
 }
 
-void MenuItems::update()
+void MenuItems::onAdded()
 {
-    if (getState()->eventHandler.check("left"))
-    {
-        if (--index_ < 0)
-        {
-            index_ = 3;
-        }
+    using kbd = tank::Keyboard;
+    using key = tank::Key;
 
-        menuItems_->select(buttons[index_]);
-    }
-    else if (getState()->eventHandler.check("right"))
-    {
-        if (++index_ > 3)
-        {
-            index_ = 0;
-        }
+    connect(kbd::KeyPress(key::A) or
+            kbd::KeyPress(key::Left),
+            [this]{left();});
 
-        menuItems_->select(buttons[index_]);
-    }
-    else if (getState()->eventHandler.check("select"))
+    connect(kbd::KeyPress(key::SemiColon) or
+            kbd::KeyPress(key::Right) or
+            kbd::KeyPress(key::D),
+            [this]{right();});
+
+    connect(kbd::KeyPress(key::Return) or
+            kbd::KeyPress(key::Space),
+            [this]{select();});
+
+    connect(kbd::KeyPress(key::Escape), []{tank::Game::popWorld();});
+}
+
+void MenuItems::left()
+{
+    if (--index_ < 0)
     {
-        switch (index_)
-        {
-        case 0:
-            tank::Game::makeState<MainState>();
-            break;
-        case 1:
-            tank::Game::makeState<Tutorial>();
-            break;
-        case 2:
-            tank::Game::makeState<Credits>();
-            break;
-        case 3:
-            tank::Game::stop();
-            break;
-        default:
-            break;
-        }
+        index_ = 3;
+    }
+
+    menuItems_->select(buttons[index_]);
+}
+
+void MenuItems::right()
+{
+    if (++index_ > 3)
+    {
+        index_ = 0;
+    }
+
+    menuItems_->select(buttons[index_]);
+}
+
+void MenuItems::select()
+{
+    switch (index_)
+    {
+    case 0:
+        tank::Game::makeWorld<MainState>();
+        break;
+    case 1:
+        tank::Game::makeWorld<Tutorial>();
+        break;
+    case 2:
+        tank::Game::makeWorld<Credits>();
+        break;
+    case 3:
+        tank::Game::popWorld();
+        break;
+    default:
+        break;
     }
 }
 
 MenuState::MenuState()
 {
-    makeEntity<tank::Entity>(tank::Vectorf{})->makeGraphic<tank::Image>(res::menuScreen);
+    makeEntity<tank::Entity>(tank::Vectorf{})->makeGraphic(res::menuScreen);
     makeEntity<MenuItems>();
-
-    eventHandler.define("left", { tank::Key::A, tank::Key::Left });
-    eventHandler.define("right", { tank::Key::SemiColon, tank::Key::Right, tank::Key::D });
-    eventHandler.define("select", { tank::Key::Return, tank::Key::Space });
-    eventHandler.define("quit", { tank::Key::Escape });
-}
-
-void MenuState::update()
-{
-    tank::State::update();
 }

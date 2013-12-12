@@ -2,6 +2,7 @@
 
 #include <boost/filesystem.hpp>
 #include <Tank/System/Game.hpp>
+#include <Tank/System/Keyboard.hpp>
 #include "Resources.hpp"
 #include "Settings.hpp"
 #include "Player.hpp"
@@ -13,6 +14,8 @@
 MainState::MainState()
     : currentPlayer_(0)
 {
+    using kbd = tank::Keyboard;
+    using key = tank::Key;
     //Load the Decks from res/decks
     for (boost::filesystem::directory_iterator deckIter("res/decks");
          deckIter != boost::filesystem::directory_iterator();
@@ -44,7 +47,7 @@ MainState::MainState()
     makeEntity<TimeBar>(summoners_[0]);
     makeEntity<ManaBar>(summoners_[0]);
 
-    eventHandler.define("quit", { tank::Key::Escape });
+    connect(kbd::KeyRelease(key::Escape), []{ tank::Game::popWorld(); });
 
     turnTimer_.start();
 }
@@ -59,7 +62,7 @@ void MainState::endTurn()
     {
         if (p->getLife() == 0)
         {
-            tank::Game::popState();
+            tank::Game::popWorld();
         }
     }
 
@@ -76,12 +79,7 @@ void MainState::update()
         endTurn();
     }
 
-    tank::State::update();
-
-    if (eventHandler.check("quit"))
-    {
-        tank::Game::popState();
-    }
+    tank::World::update();
 }
 
 void MainState::resolveAttacks()

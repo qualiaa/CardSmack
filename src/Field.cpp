@@ -105,7 +105,7 @@ void FieldGUI::update()
     }
 }
 
-void FieldGUI::draw(tank::Vectorf cam)
+void FieldGUI::draw(tank::Camera const& cam)
 {
     for (unsigned int i = 0; i < 6; ++i)
     {

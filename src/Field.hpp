@@ -38,7 +38,7 @@ class FieldGUI : public tank::Entity
 public:
     FieldGUI(tank::Vectorf pos, Field const&, bool faceUp);
     virtual void update() override;
-    virtual void draw(tank::Vectorf cam) override;
+    virtual void draw(tank::Camera const&) override;
 private:
     CardOverlay overlay_;
     Field const& field_;
