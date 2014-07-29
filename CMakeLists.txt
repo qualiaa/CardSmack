@@ -4,6 +4,7 @@ project (Cards)
 
 add_subdirectory(tank)
 
+find_package(Boost 1.53.0 COMPONENTS system filesystem REQUIRED)
 include_directories(${TANK_INCLUDE_DIRS})
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})

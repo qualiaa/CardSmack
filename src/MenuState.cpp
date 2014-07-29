@@ -18,10 +18,11 @@ MenuItems::MenuItems()
     menuItems_ = makeGraphic<tank::FrameList>(res::menuItems,
                                               tank::Vectoru {547, 58});
 
-    menuItems_->add(buttons[0], {0}, 0);
-    menuItems_->add(buttons[1], {1}, 0);
-    menuItems_->add(buttons[2], {2}, 0);
-    menuItems_->add(buttons[3], {3}, 0);
+    std::chrono::milliseconds time(0);
+    menuItems_->add(buttons[0], {0}, time);
+    menuItems_->add(buttons[1], {1}, time);
+    menuItems_->add(buttons[2], {2}, time);
+    menuItems_->add(buttons[3], {3}, time);
     menuItems_->select(buttons[0]);
 }
 

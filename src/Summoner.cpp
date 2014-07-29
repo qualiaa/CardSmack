@@ -54,8 +54,8 @@ void Summoner::update(unsigned int turnTime)
         manaTimer_.start();
     }
     else if (mana_ < settings::maxMana and
-             manaTimer_.getTicks() >
-             1000 * settings::manaRegen / settings::maxMana)
+        std::chrono::duration_cast<std::chrono::seconds>(manaTimer_.getDuration()).count() >
+        settings::manaRegen / settings::maxMana)
     {
         ++mana_;
 

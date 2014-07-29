@@ -11,7 +11,6 @@ void ZoomHack::draw(tank::Camera const& camera)
     for (auto& g : getGraphicList())
     {
         g->setScale(scale_);
-
-        g->draw(getPos() * scale_, getRotation(), camera);
     }
+    tank::Entity::draw(camera);
 }
