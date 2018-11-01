@@ -1,7 +1,7 @@
 CardSmack
 =========
 
-A game made in 72 hours for [LD48](http://ludumdare.com) 27.
+A game made in 72 hours for [Ludum Dare](http://ludumdare.com) 27.
 
 Theme: 10 Seconds
 
